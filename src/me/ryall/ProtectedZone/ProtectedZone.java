@@ -22,31 +22,43 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class ProtectedZone extends JavaPlugin
 {
+    private static String LOG_HEADER = "[Protected Zone] ";
     private static String CHAT_HEADER = ChatColor.YELLOW + "[Protected Zone] ";
     
     public void onDisable()
     {
-        log.info("[ProtectedZone] Closing Down");
+        zoneDatabase.shutdown();
+        logInfo("Flushing zones and disabling");
     }
 
     public void onEnable()
     {
-        // Initialse the core systems.
+        // Initialise the core systems.
         log = Logger.getLogger("Minecraft");
         eventListener = new EventListener(this);
         pluginListener = new PluginListener(this);
+        
+        try
+        {
+            zoneDatabase = new ZoneDatabase(this);
+            zoneDatabase.startup();
+        } 
+        catch (Exception ex) 
+        {
+            logError("Failed to initialise the required SQL Lite library. The plugin has been disabled");
+            return;
+        }
         
         zoneManager = new ZoneManager(this);
         zoneSettings = new ZoneSettings(this);
         zonePermissions = new ZonePermissions(this, getServer());
         zoneEconomy = new ZoneEconomy(this, getServer());
-        zoneDatabase = new ZoneDatabase();
         zoneCommand = new ZoneCommand(this);
         
         // Bind the listener events.
         bindEvents();
         
-        log.info("[ProtectedZone] Version 1.0.0 Loaded & Enabled");
+        logInfo("Version 1.0.0 loaded & enabled");
     }
     
     protected void bindEvents()
@@ -102,7 +114,7 @@ public class ProtectedZone extends JavaPlugin
                 }
             }
             else
-                log.info("[ProtectedZone] Can only be accessed in game.");
+                logInfo("Can only be accessed in game");
             
             return true;
         }
@@ -150,7 +162,17 @@ public class ProtectedZone extends JavaPlugin
         return CHAT_HEADER +  ChatColor.RED + "Error: ";
     }
     
-    public Logger log;
+    public void logInfo(String _message)
+    {
+        log.info(LOG_HEADER + _message);
+    }
+    
+    public void logError(String _message)
+    {
+        log.severe(LOG_HEADER + _message);
+    }
+    
+    protected Logger log;
 
     protected ZoneManager zoneManager;
     protected ZoneSettings zoneSettings;

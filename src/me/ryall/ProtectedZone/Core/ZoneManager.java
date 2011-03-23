@@ -20,7 +20,7 @@ public class ZoneManager
 	public ZoneManager(ProtectedZone _pz)
 	{
 	    pz = _pz;
-	    zones = new ArrayList<Zone>();
+	    zones = pz.getDatabase().loadZones();
 	    selectedZones = new HashMap<String, Zone>();
 	}
 	
@@ -91,7 +91,7 @@ public class ZoneManager
             }
             
             // Create the new zone if all is good with the parameters.
-            Zone newZone = new Zone(pz, _event.getBlock().getLocation(), sizeX, sizeY, sizeZ, price);
+            Zone newZone = new Zone(pz, _event.getBlock().getX(), _event.getBlock().getY(), _event.getBlock().getZ(), sizeX, sizeY, sizeZ, price);
             
             // Check that the zone does not conflict with any other zones.
             for (Zone existingZone : zones)
@@ -124,6 +124,7 @@ public class ZoneManager
             
             // Finally add the zone to the internal list if we've successfully validated everything.
             zones.add(newZone);
+            pz.getDatabase().saveZone(newZone);
             
             validateSign(_player, _event);
             _player.sendMessage(pz.getChatHeader() + "The new zone has been successfully defined");
@@ -135,7 +136,7 @@ public class ZoneManager
     public void activate(Player _player, Sign _sign)
     {
         // Claim the area if we can.
-        Zone zone = getZoneAt(_sign.getBlock().getLocation());
+        Zone zone = getZoneAt(_sign.getBlock().getX(), _sign.getBlock().getY(), _sign.getBlock().getZ());
         
         if (zone != null)
         {
@@ -186,13 +187,15 @@ public class ZoneManager
                     }
                     
                     selectedZone.setOwner(_player.getName());
+                    pz.getDatabase().saveZone(selectedZone);
                     
                     // Update the sign to reflect the new owner.
-                    Block signBlock = _player.getWorld().getBlockAt(selectedZone.getLocation());
+                    Block signBlock = _player.getWorld().getBlockAt(selectedZone.getX(), selectedZone.getY(), selectedZone.getZ());
                     Sign sign = (Sign)signBlock.getState();
                     
                     sign.setLine(2, Zone.MODE_OWNED);
                     sign.setLine(3, _player.getName());
+                    sign.update();
                     
                     _player.sendMessage(pz.getChatHeader() + "You have successfully claimed this zone");
                 }
@@ -219,13 +222,11 @@ public class ZoneManager
         _event.setLine(0, Zone.SIGN_INVALID);
     }
 	
-    private Zone getZoneAt(Location _location)
+    private Zone getZoneAt(int _x, int _y, int _z)
     {
         for (Zone zone : zones)
         {
-            if (zone.getLocation().getBlockX() == _location.getBlockX() 
-                    && zone.getLocation().getBlockY() == _location.getBlockY() 
-                    && zone.getLocation().getBlockZ() == _location.getBlockZ())
+            if (zone.getX() == _x && zone.getY() == _y && zone.getZ() == _z)
                 return zone;
         }
         

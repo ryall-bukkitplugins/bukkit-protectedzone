@@ -30,7 +30,7 @@ public class ZoneEconomy
                 
                 if (ic.isEnabled())
                 {
-                    pz.log.info("[ProtectedZone] Attached to iConomy");
+                    pz.logInfo("Found and attached to iConomy plugin");
                     iconomy = ic;
                 }
             }

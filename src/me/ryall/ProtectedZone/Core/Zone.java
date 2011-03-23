@@ -1,6 +1,8 @@
 package me.ryall.ProtectedZone.Core;
 
 // Java
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 // Internal
@@ -22,19 +24,61 @@ public class Zone
     public static String MODE_FOR_SALE   = "For Sale";
     public static String MODE_OWNED      = "Owned By";
     
-	public Zone(ProtectedZone _pz, Location _location, int _sizeX, int _sizeY, int _sizeZ, double _price)
+    public Zone(ProtectedZone _pz, ResultSet _zone, ResultSet _zoneMembers)
+    {
+        pz         = _pz;
+        
+        try
+        {
+            id         = _zone.getInt("id");
+            owner      = _zone.getString("owner");
+            x          = _zone.getInt("x");
+            y          = _zone.getInt("y");
+            z          = _zone.getInt("z");
+            width      = _zone.getInt("width");
+            height     = _zone.getInt("height");
+            depth      = _zone.getInt("depth");
+            price      = _zone.getDouble("price");
+            
+            members   = new ArrayList<String>();
+        } 
+        catch (SQLException ex)
+        {
+            pz.logError("Invalid entry found in database: " + ex.getMessage());
+        }
+    }
+    
+	public Zone(ProtectedZone _pz, int _x, int _y, int _z, int _width, int _height, int _depth, double _price)
 	{
 	    pz         = _pz;
-	    location   = _location;
-	    sizeX      = _sizeX;
-	    sizeY      = _sizeY;
-	    sizeZ      = _sizeZ;
+	    
+	    x          = _x;
+	    y          = _y;
+	    z          = _z;
+	    width      = _width;
+	    height     = _height;
+	    depth      = _depth;
 	    price      = _price;
 	    
-	    builders   = new ArrayList<String>();
+	    members    = new ArrayList<String>();
 	}
 	
-	public void setOwner(String _name)
+    public boolean hasId()
+    {
+        return id != 0;
+    }
+    
+    public void setId(int _id)
+    {
+        id = _id;
+    }
+    
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setOwner(String _name)
 	{
 	    owner = _name;
 	}
@@ -56,7 +100,7 @@ public class Zone
 	
 	public boolean canBuild(Player _player)
 	{
-		return isOwner(_player) || builders.contains(_player.getName());
+		return isOwner(_player) || members.contains(_player.getName());
 	}
 	
     public double getPrice()
@@ -119,24 +163,34 @@ public class Zone
             return !(clearXZ || getDown() > _zone.getUp() || getUp() < _zone.getDown());
     }
     
-    public Location getLocation()
+    public int getX()
     {
-        return location;
+        return x;
+    }
+    
+    public int getY()
+    {
+        return y;
+    }
+    
+    public int getZ()
+    {
+        return z;
     }
 	
-	public int getSizeX()
+	public int getWidth()
 	{
-		return sizeX;
+		return width;
 	}
 	
-	public int getSizeY()
+	public int getHeight()
 	{
-		return sizeY;
+		return height;
 	}
 	
-	public int getSizeZ()
+	public int getDepth()
 	{
-		return sizeZ;
+		return depth;
 	}
 	
     // X: -North +South
@@ -144,48 +198,50 @@ public class Zone
     // Z: -East  +West
 	public int getNorth()
 	{
-	    return location.getBlockX() - ((sizeX - 1) / 2);
+	    return x - ((width - 1) / 2);
 	}
 	
 	public int getSouth()
     {
-        return location.getBlockX() + ((sizeX - 1) / 2);
+        return x + ((width - 1) / 2);
     }
 	
 	public int getEast()
     {
-        return location.getBlockZ() - ((sizeZ - 1) / 2);
+        return z - ((depth - 1) / 2);
     }
 	
 	public int getWest()
     {
-        return location.getBlockZ() + ((sizeZ - 1) / 2);
+        return z + ((depth - 1) / 2);
     }
 	
 	public int getUp()
     {
-        return location.getBlockY() + ((sizeY - 1) / 2);
+        return y + ((height - 1) / 2);
     }
 	
 	public int getDown()
     {
-        return location.getBlockY() - ((sizeY - 1) / 2);
+        return y - ((height - 1) / 2);
     }
 	
 	public int getArea()
 	{
-		return sizeX * sizeY * sizeZ;
+		return width * height * depth;
 	}
 	
 	private ProtectedZone pz;
-	
-	private Location location;
+
+	private int id;
+	private String name;
 	private String owner;
-	private ArrayList<String> builders;
-	
-	private int sizeX;
-    private int sizeY;
-    private int sizeZ;
-    
+	private int x;
+    private int y;
+    private int z;
+	private int width;
+    private int height;
+    private int depth;
     private double price;
+    private ArrayList<String> members;
 }

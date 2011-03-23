@@ -28,7 +28,7 @@ public class ZonePermissions
             
             if (plugin != null)
             {
-                pz.log.info("[ProtectedZone] Attached to Permissions");
+                pz.logInfo("Found and attached to Permissions plugin");
                 permissions = ((Permissions)plugin).getHandler();
             }
         }

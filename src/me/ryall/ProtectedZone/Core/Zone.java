@@ -10,8 +10,9 @@ import me.ryall.ProtectedZone.ProtectedZone;
 
 // Bukkit
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 
 public class Zone 
@@ -62,6 +63,33 @@ public class Zone
 	    
 	    members    = new ArrayList<String>();
 	}
+	
+    public void updateSign(World _world)
+    {
+        Block signBlock = _world.getBlockAt(x, y, z);
+        Sign sign = (Sign)signBlock.getState();
+        
+        if (hasOwner())
+        {
+            sign.setLine(2, MODE_OWNED);
+            sign.setLine(3, owner);
+        }
+        else
+        {
+            if (isFree())
+            {
+                sign.setLine(2, MODE_AVAILABLE);
+                sign.setLine(3, "");
+            }
+            else
+            {
+                sign.setLine(2, MODE_FOR_SALE);
+                sign.setLine(3, "$" + price);
+            }
+        }
+        
+        sign.update();
+    }
 	
     public boolean hasId()
     {
@@ -116,6 +144,11 @@ public class Zone
     public boolean isNoticeEnabled()
     {
         return true;
+    }
+    
+    public boolean isAt(int _x, int _y, int _z)
+    {
+        return x == _x && y == _y && z == _z;
     }
     
     public boolean containsBlock(Block _block)
@@ -234,7 +267,6 @@ public class Zone
 	private ProtectedZone pz;
 
 	private int id;
-	private String name;
 	private String owner;
 	private int x;
     private int y;

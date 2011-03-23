@@ -162,9 +162,22 @@ public class ZoneDatabase
         }
     }
     
-    private String parseNullable(String _string)
+    public void deleteZone(Zone _zone)
     {
-        return _string == null ? "NULL" : "'" + _string + "'";
+        try
+        {
+            PreparedStatement ps = connection.prepareStatement(
+                "DELETE FROM zone WHERE id = ?;");
+        
+            ps.setInt(1, _zone.getId());
+            
+            ps.executeUpdate();
+            ps.close();
+        } 
+        catch (SQLException ex)
+        {
+            pz.logError("Could not delete the zone from the database: " + ex.getMessage());
+        }
     }
 
     private ProtectedZone pz;

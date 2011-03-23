@@ -43,7 +43,12 @@ public class ZonePermissions
     {
         return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.subdefine") && _zone.isOwner(_player));
     }
-	
+    
+    public boolean hasDestroyPermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.destroy"));
+    }
+    
 	public boolean hasClaimPermission(Player _player)
 	{
 		return hasGlobalPermission(_player) || permissions.has(_player, "protectedzone.claim");
@@ -53,6 +58,11 @@ public class ZonePermissions
 	{
 		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.release") && _zone.isOwner(_player));
 	}
+	
+    public boolean hasActivatePermission(Player _player, Zone _zone)
+    {
+        return hasClaimPermission(_player) || hasReleasePermission(_player, _zone);
+    }
 	
 	public boolean hasAddPermission(Player _player, Zone _zone)
 	{

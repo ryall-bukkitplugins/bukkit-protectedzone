@@ -22,29 +22,43 @@ public class EventListener extends BlockListener
 	}
 	
 	public void onBlockBreak(BlockBreakEvent _event) 
-	{
-	    // Prevent zone signs from being destroyed without authority.
-	    // Might do this by default!
-	    /*switch (_event.getBlock().getType())
-        {
-        case WALL_SIGN:
-        case SIGN_POST:
-        {
-            // TODO:
-        }
-        break;
-        }*/
-        
+	{       
 	    Player player = _event.getPlayer();
         Zone zone = pz.getManager().getZoneContaining(_event.getBlock());
         
         // Only allow specific users to break blocks.
-        if (zone != null && !zone.canBuild(player))
+        if (zone != null)
         {
-            _event.setCancelled(true);
+            // Prevent zone signs from being destroyed while active.
+            switch (_event.getBlock().getType())
+            {
+            case WALL_SIGN:
+            case SIGN_POST:
+            {
+                Sign sign = (Sign)_event.getBlock().getState();
+                
+                if (sign.getLine(0).equalsIgnoreCase(Zone.SIGN_VALID))
+                {
+                    if (zone.isAt(sign.getX(), sign.getY(), sign.getZ()))
+                    {
+                        if (!pz.getManager().destroy(player, zone))
+                            _event.setCancelled(true);
+                        
+                        // Don't continue with the normal checks.
+                        return;                        
+                    }
+                }
+            }
+            break;
+            }
             
-            if (zone.isNoticeEnabled())
-                player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
+            if (!zone.canBuild(player))
+            {
+                _event.setCancelled(true);
+            
+                if (zone.isNoticeEnabled())
+                    player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
+            }
         }
 	}
 	

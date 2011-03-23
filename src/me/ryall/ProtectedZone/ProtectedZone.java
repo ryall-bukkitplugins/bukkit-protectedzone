@@ -94,7 +94,7 @@ public class ProtectedZone extends JavaPlugin
                     else if (subcommand.equalsIgnoreCase("claim"))
                         zoneManager.claim(player);
                     else if (subcommand.equalsIgnoreCase("release"))
-                        zoneCommand.release(player);
+                        zoneManager.release(player);
                     else if (subcommand.equalsIgnoreCase("add") && name != null)
                         zoneCommand.add(player, name);
                     else if (subcommand.equalsIgnoreCase("remove") && name != null)

@@ -9,7 +9,6 @@ import me.ryall.ProtectedZone.ProtectedZone;
 
 // Bukkit
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -140,26 +139,33 @@ public class ZoneManager
         
         if (zone != null)
         {
-            if (pz.getPermissions().hasClaimPermission(_player) && !zone.hasOwner())
+            if (pz.getPermissions().hasActivatePermission(_player, zone))
             {
                 // If it doesn't have an owner, it's claimable.
                 selectedZones.put(_player.getName(), zone);
                 
-                String claimInstructions = "Zone selected, type " + ChatColor.AQUA + "/pz claim " + ChatColor.WHITE + "to claim this zone";
+                if (!zone.hasOwner())
+                {
+                    String claimInstructions = "Zone selected, type " + ChatColor.AQUA + "/pz claim " + ChatColor.WHITE + "to claim this zone";
                 
-                if (!zone.isFree())
-                    claimInstructions += " for " + ChatColor.GOLD + "$" + zone.getPrice();
-                
-                _player.sendMessage(pz.getChatHeader() + claimInstructions);
+                    if (!zone.isFree())
+                        claimInstructions += " for " + ChatColor.GOLD + "$" + zone.getPrice();
+                    
+                    _player.sendMessage(pz.getChatHeader() + claimInstructions);
+                }
+                else
+                    _player.sendMessage(pz.getChatHeader() + "Zone selected");
+            }
+
+            if (zone.hasOwner())
+            {
+                if (zone.isOwner(_player))
+                    _player.sendMessage(pz.getChatHeader() + "You own this zone"); 
+                else
+                    _player.sendMessage(pz.getChatHeader() + "This zone is owned by: " + zone.getOwner()); 
             }
             else
-            {
-                if (zone.hasOwner())
-                    _player.sendMessage(pz.getChatHeader() + "This zone is owned by: " + zone.getOwner()); 
-                else
-                    _player.sendMessage(pz.getChatHeader() + "This zone has not been claimed"); 
-            }
-                
+                _player.sendMessage(pz.getChatHeader() + "This zone has not been claimed");         
         }
         else
             _player.sendMessage(pz.getChatErrorHeader() + "The zone could not be matched internally. Please recreate it and try again");
@@ -167,11 +173,11 @@ public class ZoneManager
 
     public void claim(Player _player)
     {
-        if (pz.getPermissions().hasClaimPermission(_player))
+        Zone selectedZone = selectedZones.get(_player.getName());
+        
+        if (selectedZone != null)
         {
-            Zone selectedZone = selectedZones.get(_player.getName());
-            
-            if (selectedZone != null)
+            if (pz.getPermissions().hasClaimPermission(_player))
             {
                 if (!selectedZone.hasOwner())
                 {
@@ -187,15 +193,9 @@ public class ZoneManager
                     }
                     
                     selectedZone.setOwner(_player.getName());
+                    selectedZone.updateSign(_player.getWorld());
+                    
                     pz.getDatabase().saveZone(selectedZone);
-                    
-                    // Update the sign to reflect the new owner.
-                    Block signBlock = _player.getWorld().getBlockAt(selectedZone.getX(), selectedZone.getY(), selectedZone.getZ());
-                    Sign sign = (Sign)signBlock.getState();
-                    
-                    sign.setLine(2, Zone.MODE_OWNED);
-                    sign.setLine(3, _player.getName());
-                    sign.update();
                     
                     _player.sendMessage(pz.getChatHeader() + "You have successfully claimed this zone");
                 }
@@ -205,10 +205,65 @@ public class ZoneManager
                     _player.sendMessage(pz.getChatErrorHeader() + "This zone has already been claimed by: " + selectedZone.getOwner());
             }
             else
-                _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before claiming");
+                _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to claim zones");
         }
         else
-            _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to claim zones");
+            _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before claiming");
+    }
+    
+    public void release(Player _player)
+    {
+        Zone selectedZone = selectedZones.get(_player.getName());
+        
+        if (selectedZone != null)
+        {
+            if (pz.getPermissions().hasReleasePermission(_player, selectedZone))
+            {
+                if (selectedZone.hasOwner())
+                {
+                    selectedZone.setOwner(null);
+                    selectedZone.updateSign(_player.getWorld());
+                    
+                    pz.getDatabase().saveZone(selectedZone);
+
+                    _player.sendMessage(pz.getChatHeader() + "You have successfully released this zone");
+                }
+                else
+                    _player.sendMessage(pz.getChatErrorHeader() + "This zone has no owner");
+            }
+            else
+                _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to release this zone");
+        }
+        else
+            _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before releasing");
+    }
+    
+    public boolean destroy(Player _player, Zone _zone)
+    {
+        if (pz.getPermissions().hasDestroyPermission(_player))
+        {
+            if (!_zone.hasOwner())
+            {
+                pz.getDatabase().deleteZone(_zone);
+                zones.remove(_zone);
+                
+                _player.sendMessage(pz.getChatHeader() + "The zone was successfully destroyed");
+                
+                return true;
+            }
+            else
+            {
+                if (_zone.isOwner(_player))
+                    _player.sendMessage(pz.getChatHeader() + "Claimed zones must be released before they can be destroyed. Type " + 
+                               ChatColor.AQUA + "/pz release " + ChatColor.WHITE + "to release this zone");
+                else
+                    _player.sendMessage(pz.getChatErrorHeader() + "Only the zone owner can release this zone");
+            }
+        }
+        else
+            _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to destroy this zone");
+        
+        return false;
     }
     
     private void validateSign(Player _player, SignChangeEvent _event)

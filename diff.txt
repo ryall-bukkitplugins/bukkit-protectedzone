@@ -1,0 +1,2860 @@
+diff --git a/.classpath b/.classpath
+index f19d42f..8fbebb6 100644
+--- a/.classpath
++++ b/.classpath
+@@ -1,11 +1,11 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+-	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/bukkit_461.jar"/>
+-	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/permissions_2.5.4.jar"/>
+-	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/craftbukkit_556.jar"/>
+-	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/iconomy_4.5.5.jar"/>
+-	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/Libs/sqlitejdbc-v056.jar"/>
+-	<classpathentry kind="output" path="bin"/>
+-</classpath>
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
++	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/bukkit_461.jar"/>
++	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/permissions_2.5.4.jar"/>
++	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/craftbukkit_556.jar"/>
++	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/External/iconomy_4.5.5.jar"/>
++	<classpathentry kind="lib" path="C:/Users/Nat Ryall/Documents/My Dropbox/Projects/Bukkit/Libs/sqlitejdbc-v056.jar"/>
++	<classpathentry kind="output" path="bin"/>
++</classpath>
+diff --git a/.project b/.project
+index d6a7ba8..b620cc0 100644
+--- a/.project
++++ b/.project
+@@ -1,17 +1,17 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<projectDescription>
+-	<name>ProtectedZone</name>
+-	<comment></comment>
+-	<projects>
+-	</projects>
+-	<buildSpec>
+-		<buildCommand>
+-			<name>org.eclipse.jdt.core.javabuilder</name>
+-			<arguments>
+-			</arguments>
+-		</buildCommand>
+-	</buildSpec>
+-	<natures>
+-		<nature>org.eclipse.jdt.core.javanature</nature>
+-	</natures>
+-</projectDescription>
++<?xml version="1.0" encoding="UTF-8"?>
++<projectDescription>
++	<name>ProtectedZone</name>
++	<comment></comment>
++	<projects>
++	</projects>
++	<buildSpec>
++		<buildCommand>
++			<name>org.eclipse.jdt.core.javabuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++	</buildSpec>
++	<natures>
++		<nature>org.eclipse.jdt.core.javanature</nature>
++	</natures>
++</projectDescription>
+diff --git a/.settings/org.eclipse.jdt.core.prefs b/.settings/org.eclipse.jdt.core.prefs
+index 8906fa7..901a09d 100644
+--- a/.settings/org.eclipse.jdt.core.prefs
++++ b/.settings/org.eclipse.jdt.core.prefs
+@@ -1,12 +1,12 @@
+-#Mon Mar 21 12:20:33 GMT 2011
+-eclipse.preferences.version=1
+-org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.6
+-org.eclipse.jdt.core.compiler.codegen.unusedLocal=preserve
+-org.eclipse.jdt.core.compiler.compliance=1.6
+-org.eclipse.jdt.core.compiler.debug.lineNumber=generate
+-org.eclipse.jdt.core.compiler.debug.localVariable=generate
+-org.eclipse.jdt.core.compiler.debug.sourceFile=generate
+-org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+-org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
+-org.eclipse.jdt.core.compiler.source=1.6
++#Mon Mar 21 12:20:33 GMT 2011
++eclipse.preferences.version=1
++org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.6
++org.eclipse.jdt.core.compiler.codegen.unusedLocal=preserve
++org.eclipse.jdt.core.compiler.compliance=1.6
++org.eclipse.jdt.core.compiler.debug.lineNumber=generate
++org.eclipse.jdt.core.compiler.debug.localVariable=generate
++org.eclipse.jdt.core.compiler.debug.sourceFile=generate
++org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
++org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
++org.eclipse.jdt.core.compiler.source=1.6
+diff --git a/plugin.yml b/plugin.yml
+index 6df86c4..1585319 100644
+--- a/plugin.yml
++++ b/plugin.yml
+@@ -1,8 +1,8 @@
+-name: Protected Zone
+-main: me.ryall.ProtectedZone.ProtectedZone
+-version: 1
+-description: Flexible and Powerful Zone Protection
+-commands:
+-  PZ:
+-    description: Controls the Protection Zone plugin
++name: Protected Zone
++main: me.ryall.ProtectedZone.ProtectedZone
++version: 1
++description: Flexible and Powerful Zone Protection
++commands:
++  PZ:
++    description: Controls the Protection Zone plugin
+     usage: /pz (info|claim|release|add <user>|remove <user>|owner <user>)
+\ No newline at end of file
+diff --git a/src/me/ryall/ProtectedZone/Core/Zone.java b/src/me/ryall/ProtectedZone/Core/Zone.java
+index 38cc95f..6f8883d 100644
+--- a/src/me/ryall/ProtectedZone/Core/Zone.java
++++ b/src/me/ryall/ProtectedZone/Core/Zone.java
+@@ -1,279 +1,279 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Java
+-import java.sql.ResultSet;
+-import java.sql.SQLException;
+-import java.util.ArrayList;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-// Bukkit
+-import org.bukkit.ChatColor;
+-import org.bukkit.World;
+-import org.bukkit.block.Block;
+-import org.bukkit.block.Sign;
+-import org.bukkit.entity.Player;
+-
+-public class Zone 
+-{
+-    public static String SIGN_CHECK      = "Protected Zone";
+-    public static String SIGN_VALID      = ChatColor.DARK_GREEN + "Protected";
+-    public static String SIGN_INVALID    = ChatColor.DARK_RED + "Not Protected";
+-    
+-    public static String MODE_AVAILABLE  = "Available";
+-    public static String MODE_FOR_SALE   = "For Sale";
+-    public static String MODE_OWNED      = "Owned By";
+-    
+-    public Zone(ProtectedZone _pz, ResultSet _zone, ResultSet _zoneMembers)
+-    {
+-        pz         = _pz;
+-        
+-        try
+-        {
+-            id         = _zone.getInt("id");
+-            owner      = _zone.getString("owner");
+-            x          = _zone.getInt("x");
+-            y          = _zone.getInt("y");
+-            z          = _zone.getInt("z");
+-            width      = _zone.getInt("width");
+-            height     = _zone.getInt("height");
+-            depth      = _zone.getInt("depth");
+-            price      = _zone.getDouble("price");
+-            
+-            members   = new ArrayList<String>();
+-        } 
+-        catch (SQLException ex)
+-        {
+-            pz.logError("Invalid entry found in database: " + ex.getMessage());
+-        }
+-    }
+-    
+-	public Zone(ProtectedZone _pz, int _x, int _y, int _z, int _width, int _height, int _depth, double _price)
+-	{
+-	    pz         = _pz;
+-	    
+-	    x          = _x;
+-	    y          = _y;
+-	    z          = _z;
+-	    width      = _width;
+-	    height     = _height;
+-	    depth      = _depth;
+-	    price      = _price;
+-	    
+-	    members    = new ArrayList<String>();
+-	}
+-	
+-    public void updateSign(World _world)
+-    {
+-        Block signBlock = _world.getBlockAt(x, y, z);
+-        Sign sign = (Sign)signBlock.getState();
+-        
+-        if (hasOwner())
+-        {
+-            sign.setLine(2, MODE_OWNED);
+-            sign.setLine(3, owner);
+-        }
+-        else
+-        {
+-            if (isFree())
+-            {
+-                sign.setLine(2, MODE_AVAILABLE);
+-                sign.setLine(3, "");
+-            }
+-            else
+-            {
+-                sign.setLine(2, MODE_FOR_SALE);
+-                sign.setLine(3, "$" + price);
+-            }
+-        }
+-        
+-        sign.update();
+-    }
+-	
+-    public boolean hasId()
+-    {
+-        return id != 0;
+-    }
+-    
+-    public void setId(int _id)
+-    {
+-        id = _id;
+-    }
+-    
+-    public int getId()
+-    {
+-        return id;
+-    }
+-
+-    public void setOwner(String _name)
+-	{
+-	    owner = _name;
+-	}
+-	
+-    public String getOwner()
+-    {
+-        return owner;
+-    }
+-	
+-	public boolean hasOwner()
+-	{
+-	    return owner != null;
+-	}
+-	   
+-	public boolean isOwner(Player _player)
+-	{
+-		return _player.getName().equalsIgnoreCase(owner);
+-	}
+-	
+-	public boolean canBuild(Player _player)
+-	{
+-		return isOwner(_player) || members.contains(_player.getName());
+-	}
+-	
+-    public double getPrice()
+-    {
+-        return price;
+-    }
+-    
+-    public boolean isFree()
+-    {
+-        return price == 0;
+-    }
+-	
+-    public boolean isNoticeEnabled()
+-    {
+-        return true;
+-    }
+-    
+-    public boolean isAt(int _x, int _y, int _z)
+-    {
+-        return x == _x && y == _y && z == _z;
+-    }
+-    
+-    public boolean containsBlock(Block _block)
+-    {
+-        // X: -North +South
+-        // Y: -Down  +Up
+-        // Z: -East  +West
+-        
+-        boolean inXZ = _block.getX() >= getNorth() && _block.getX() <= getSouth() && 
+-                       _block.getZ() >= getEast() && _block.getZ() <= getWest();
+-        
+-        if (pz.getSettings().ignoreY())
+-            return inXZ;
+-        else
+-            return inXZ && _block.getY() >= getDown() && _block.getY() <= getUp();
+-    }
+-    
+-    public boolean isWithin(Zone _zone)
+-    {
+-        // X: -North +South
+-        // Y: -Down  +Up
+-        // Z: -East  +West
+-        
+-        boolean inXZ = _zone.getNorth() <= getNorth() && _zone.getSouth() >= getSouth() && 
+-                       _zone.getEast() <= getEast() && _zone.getWest() >= getWest();
+-        
+-        if (pz.getSettings().ignoreY())
+-            return inXZ;
+-        else
+-            return inXZ && _zone.getDown() <= getDown() && _zone.getUp() >= getUp();
+-    }
+-    
+-    public boolean conflictsWith(Zone _zone)
+-    {
+-        // X: -North +South
+-        // Y: -Down  +Up
+-        // Z: -East  +West
+-        
+-        boolean clearXZ = getNorth() > _zone.getSouth() || getSouth() < _zone.getNorth() || 
+-                          getEast() > _zone.getWest() || getWest() < _zone.getEast();
+-
+-        if (pz.getSettings().ignoreY())
+-            return !clearXZ;
+-        else
+-            return !(clearXZ || getDown() > _zone.getUp() || getUp() < _zone.getDown());
+-    }
+-    
+-    public int getX()
+-    {
+-        return x;
+-    }
+-    
+-    public int getY()
+-    {
+-        return y;
+-    }
+-    
+-    public int getZ()
+-    {
+-        return z;
+-    }
+-	
+-	public int getWidth()
+-	{
+-		return width;
+-	}
+-	
+-	public int getHeight()
+-	{
+-		return height;
+-	}
+-	
+-	public int getDepth()
+-	{
+-		return depth;
+-	}
+-	
+-    // X: -North +South
+-    // Y: -Down  +Up
+-    // Z: -East  +West
+-	public int getNorth()
+-	{
+-	    return x - ((width - 1) / 2);
+-	}
+-	
+-	public int getSouth()
+-    {
+-        return x + ((width - 1) / 2);
+-    }
+-	
+-	public int getEast()
+-    {
+-        return z - ((depth - 1) / 2);
+-    }
+-	
+-	public int getWest()
+-    {
+-        return z + ((depth - 1) / 2);
+-    }
+-	
+-	public int getUp()
+-    {
+-        return y + ((height - 1) / 2);
+-    }
+-	
+-	public int getDown()
+-    {
+-        return y - ((height - 1) / 2);
+-    }
+-	
+-	public int getArea()
+-	{
+-		return width * height * depth;
+-	}
+-	
+-	private ProtectedZone pz;
+-
+-	private int id;
+-	private String owner;
+-	private int x;
+-    private int y;
+-    private int z;
+-	private int width;
+-    private int height;
+-    private int depth;
+-    private double price;
+-    private ArrayList<String> members;
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Java
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.util.ArrayList;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++// Bukkit
++import org.bukkit.ChatColor;
++import org.bukkit.World;
++import org.bukkit.block.Block;
++import org.bukkit.block.Sign;
++import org.bukkit.entity.Player;
++
++public class Zone 
++{
++    public static String SIGN_CHECK      = "Protected Zone";
++    public static String SIGN_VALID      = ChatColor.DARK_GREEN + "Protected";
++    public static String SIGN_INVALID    = ChatColor.DARK_RED + "Not Protected";
++    
++    public static String MODE_AVAILABLE  = "Available";
++    public static String MODE_FOR_SALE   = "For Sale";
++    public static String MODE_OWNED      = "Owned By";
++    
++    public Zone(ProtectedZone _pz, ResultSet _zone, ResultSet _zoneMembers)
++    {
++        pz         = _pz;
++        
++        try
++        {
++            id         = _zone.getInt("id");
++            owner      = _zone.getString("owner");
++            x          = _zone.getInt("x");
++            y          = _zone.getInt("y");
++            z          = _zone.getInt("z");
++            width      = _zone.getInt("width");
++            height     = _zone.getInt("height");
++            depth      = _zone.getInt("depth");
++            price      = _zone.getDouble("price");
++            
++            members   = new ArrayList<String>();
++        } 
++        catch (SQLException ex)
++        {
++            pz.logError("Invalid entry found in database: " + ex.getMessage());
++        }
++    }
++    
++	public Zone(ProtectedZone _pz, int _x, int _y, int _z, int _width, int _height, int _depth, double _price)
++	{
++	    pz         = _pz;
++	    
++	    x          = _x;
++	    y          = _y;
++	    z          = _z;
++	    width      = _width;
++	    height     = _height;
++	    depth      = _depth;
++	    price      = _price;
++	    
++	    members    = new ArrayList<String>();
++	}
++	
++    public void updateSign(World _world)
++    {
++        Block signBlock = _world.getBlockAt(x, y, z);
++        Sign sign = (Sign)signBlock.getState();
++        
++        if (hasOwner())
++        {
++            sign.setLine(2, MODE_OWNED);
++            sign.setLine(3, owner);
++        }
++        else
++        {
++            if (isFree())
++            {
++                sign.setLine(2, MODE_AVAILABLE);
++                sign.setLine(3, "");
++            }
++            else
++            {
++                sign.setLine(2, MODE_FOR_SALE);
++                sign.setLine(3, "$" + price);
++            }
++        }
++        
++        sign.update();
++    }
++	
++    public boolean hasId()
++    {
++        return id != 0;
++    }
++    
++    public void setId(int _id)
++    {
++        id = _id;
++    }
++    
++    public int getId()
++    {
++        return id;
++    }
++
++    public void setOwner(String _name)
++	{
++	    owner = _name;
++	}
++	
++    public String getOwner()
++    {
++        return owner;
++    }
++	
++	public boolean hasOwner()
++	{
++	    return owner != null;
++	}
++	   
++	public boolean isOwner(Player _player)
++	{
++		return _player.getName().equalsIgnoreCase(owner);
++	}
++	
++	public boolean canBuild(Player _player)
++	{
++		return isOwner(_player) || members.contains(_player.getName());
++	}
++	
++    public double getPrice()
++    {
++        return price;
++    }
++    
++    public boolean isFree()
++    {
++        return price == 0;
++    }
++	
++    public boolean isNoticeEnabled()
++    {
++        return true;
++    }
++    
++    public boolean isAt(int _x, int _y, int _z)
++    {
++        return x == _x && y == _y && z == _z;
++    }
++    
++    public boolean containsBlock(Block _block)
++    {
++        // X: -North +South
++        // Y: -Down  +Up
++        // Z: -East  +West
++        
++        boolean inXZ = _block.getX() >= getNorth() && _block.getX() <= getSouth() && 
++                       _block.getZ() >= getEast() && _block.getZ() <= getWest();
++        
++        if (pz.getSettings().ignoreY())
++            return inXZ;
++        else
++            return inXZ && _block.getY() >= getDown() && _block.getY() <= getUp();
++    }
++    
++    public boolean isWithin(Zone _zone)
++    {
++        // X: -North +South
++        // Y: -Down  +Up
++        // Z: -East  +West
++        
++        boolean inXZ = _zone.getNorth() <= getNorth() && _zone.getSouth() >= getSouth() && 
++                       _zone.getEast() <= getEast() && _zone.getWest() >= getWest();
++        
++        if (pz.getSettings().ignoreY())
++            return inXZ;
++        else
++            return inXZ && _zone.getDown() <= getDown() && _zone.getUp() >= getUp();
++    }
++    
++    public boolean conflictsWith(Zone _zone)
++    {
++        // X: -North +South
++        // Y: -Down  +Up
++        // Z: -East  +West
++        
++        boolean clearXZ = getNorth() > _zone.getSouth() || getSouth() < _zone.getNorth() || 
++                          getEast() > _zone.getWest() || getWest() < _zone.getEast();
++
++        if (pz.getSettings().ignoreY())
++            return !clearXZ;
++        else
++            return !(clearXZ || getDown() > _zone.getUp() || getUp() < _zone.getDown());
++    }
++    
++    public int getX()
++    {
++        return x;
++    }
++    
++    public int getY()
++    {
++        return y;
++    }
++    
++    public int getZ()
++    {
++        return z;
++    }
++	
++	public int getWidth()
++	{
++		return width;
++	}
++	
++	public int getHeight()
++	{
++		return height;
++	}
++	
++	public int getDepth()
++	{
++		return depth;
++	}
++	
++    // X: -North +South
++    // Y: -Down  +Up
++    // Z: -East  +West
++	public int getNorth()
++	{
++	    return x - ((width - 1) / 2);
++	}
++	
++	public int getSouth()
++    {
++        return x + ((width - 1) / 2);
++    }
++	
++	public int getEast()
++    {
++        return z - ((depth - 1) / 2);
++    }
++	
++	public int getWest()
++    {
++        return z + ((depth - 1) / 2);
++    }
++	
++	public int getUp()
++    {
++        return y + ((height - 1) / 2);
++    }
++	
++	public int getDown()
++    {
++        return y - ((height - 1) / 2);
++    }
++	
++	public int getArea()
++	{
++		return width * height * depth;
++	}
++	
++	private ProtectedZone pz;
++
++	private int id;
++	private String owner;
++	private int x;
++    private int y;
++    private int z;
++	private int width;
++    private int height;
++    private int depth;
++    private double price;
++    private ArrayList<String> members;
++}
+diff --git a/src/me/ryall/ProtectedZone/Core/ZoneCommand.java b/src/me/ryall/ProtectedZone/Core/ZoneCommand.java
+index 9b88751..4408a4e 100644
+--- a/src/me/ryall/ProtectedZone/Core/ZoneCommand.java
++++ b/src/me/ryall/ProtectedZone/Core/ZoneCommand.java
+@@ -1,42 +1,42 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-// Bukkit
+-import org.bukkit.entity.Player;
+-
+-public class ZoneCommand 
+-{
+-    public ZoneCommand(ProtectedZone _pz)
+-    {
+-        pz = _pz;
+-    }
+-
+-    public void info(Player _player)
+-    {
+-        //Zone zone = pz.getManager().getZone(_player.);
+-    }
+-    
+-    public void claim(Player _player)
+-    {
+-    }
+-    
+-    public void release(Player _player)
+-    {
+-    }
+-    
+-    public void add(Player _player, String _name)
+-    {
+-    }
+-    
+-    public void remove(Player _player, String _name)
+-    {
+-    }
+-    
+-    public void owner(Player _player, String _name)
+-    {
+-    }
+-    
+-    public ProtectedZone pz;
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++// Bukkit
++import org.bukkit.entity.Player;
++
++public class ZoneCommand 
++{
++    public ZoneCommand(ProtectedZone _pz)
++    {
++        pz = _pz;
++    }
++
++    public void info(Player _player)
++    {
++        //Zone zone = pz.getManager().getZone(_player.);
++    }
++    
++    public void claim(Player _player)
++    {
++    }
++    
++    public void release(Player _player)
++    {
++    }
++    
++    public void add(Player _player, String _name)
++    {
++    }
++    
++    public void remove(Player _player, String _name)
++    {
++    }
++    
++    public void owner(Player _player, String _name)
++    {
++    }
++    
++    public ProtectedZone pz;
++}
+diff --git a/src/me/ryall/ProtectedZone/Core/ZoneDatabase.java b/src/me/ryall/ProtectedZone/Core/ZoneDatabase.java
+index ea53048..deb8f66 100644
+--- a/src/me/ryall/ProtectedZone/Core/ZoneDatabase.java
++++ b/src/me/ryall/ProtectedZone/Core/ZoneDatabase.java
+@@ -1,185 +1,185 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Java
+-import java.util.ArrayList;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-// SQLLite
+-import java.sql.Connection;
+-import java.sql.DriverManager;
+-import java.sql.PreparedStatement;
+-import java.sql.ResultSet;
+-import java.sql.SQLException;
+-import java.sql.Statement;
+-
+-public class ZoneDatabase
+-{
+-    public ZoneDatabase(ProtectedZone _pz) throws Exception
+-    {
+-        pz = _pz;
+-        
+-        Class.forName("org.sqlite.JDBC");
+-        connection = DriverManager.getConnection("jdbc:sqlite:ProtectedZone.db");
+-    }
+-    
+-    public void startup()
+-    {
+-        try
+-        {
+-            Statement statement = connection.createStatement();
+-            
+-            statement.executeUpdate(
+-                          "CREATE TABLE IF NOT EXISTS zone(" +
+-                              "id INTEGER PRIMARY KEY ASC AUTOINCREMENT, " +
+-                              "name VARCHAR(100) NULL, " +
+-                              "owner VARCHAR(100) NULL, " + 
+-                              "x INTEGER, " +
+-                              "y INTEGER, " +
+-                              "z INTEGER, " +
+-                              "width INTEGER, " +
+-                              "height INTEGER, " +
+-                              "depth INTEGER, " +
+-                              "price DECIMAL(65, 2)" + // Matches iConomy
+-                          ");");
+-            statement.executeUpdate(
+-                          "CREATE TABLE IF NOT EXISTS zone_member(" +
+-                              "id INTEGER PRIMARY KEY ASC AUTOINCREMENT, " +
+-                              "zone_id INTEGER, " +
+-                              "player VARCHAR(100)" +
+-                          ");");
+-            /*statement.executeUpdate(
+-                          "CREATE TABLE IF NOT EXISTS member_permission(" +
+-                              "id INTEGER PRIMARY KEY ASC AUTOINCREMENT, " +
+-                              "member_id INTEGER, " +
+-                              "name VARCHAR(100) " +
+-                          ");");*/
+-            
+-            statement.close();
+-        } 
+-        catch (SQLException ex)
+-        {
+-            pz.logError("Could not initialise the database: " + ex.getMessage());
+-        }
+-    }
+-    
+-    public void shutdown()
+-    {
+-        try
+-        {
+-            connection.close();
+-        } 
+-        catch (SQLException ex)
+-        {
+-            pz.logError("Could not close the database connection: " + ex.getMessage());
+-        }
+-    }
+-    
+-    public Connection getConnection()
+-    {
+-        return connection;
+-    }
+-    
+-    public ArrayList<Zone> loadZones()
+-    {
+-        ArrayList<Zone> zones = new ArrayList<Zone>();
+-        
+-        try
+-        {
+-            Statement statement = connection.createStatement();
+-            
+-            ResultSet result = statement.executeQuery("SELECT * FROM zone;");
+-            
+-            while (result.next())
+-            {
+-                Zone zone = new Zone(pz, result, null);
+-                zones.add(zone);
+-            }
+-            
+-            result.close();
+-            statement.close();
+-        } 
+-        catch (SQLException ex)
+-        {
+-            pz.logError("Could not load any protected zones from the database: " + ex.getMessage());
+-        }
+-        
+-        return zones;
+-    }
+-    
+-    public boolean saveZone(Zone _zone)
+-    {
+-        try
+-        {
+-            if (_zone.hasId()) 
+-            {
+-                PreparedStatement ps = connection.prepareStatement(
+-                    "UPDATE zone SET owner = ?, x = ?, y = ?, z = ?, width = ?, height = ?, depth = ?, price = ? WHERE id = ?;");
+-                
+-                ps.setString(1, _zone.getOwner());
+-                ps.setInt(2, _zone.getX());
+-                ps.setInt(3, _zone.getY());
+-                ps.setInt(4, _zone.getZ());
+-                ps.setInt(5, _zone.getWidth());
+-                ps.setInt(6, _zone.getHeight());
+-                ps.setInt(7, _zone.getDepth());
+-                ps.setDouble(8, _zone.getPrice());
+-                ps.setInt(9, _zone.getId());
+-                
+-                ps.executeUpdate();
+-                ps.close();
+-            }
+-            else
+-            {
+-                PreparedStatement ps = connection.prepareStatement(
+-                    "INSERT INTO zone(owner, x, y, z, width, height, depth, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+-                
+-                ps.setString(1, _zone.getOwner());
+-                ps.setInt(2, _zone.getX());
+-                ps.setInt(3, _zone.getY());
+-                ps.setInt(4, _zone.getZ());
+-                ps.setInt(5, _zone.getWidth());
+-                ps.setInt(6, _zone.getHeight());
+-                ps.setInt(7, _zone.getDepth());
+-                ps.setDouble(8, _zone.getPrice());
+-                
+-                ps.executeUpdate();
+-                
+-                ResultSet insertResult = ps.getGeneratedKeys();
+-                _zone.setId(insertResult.getInt(1));
+-                insertResult.close();
+-                
+-                ps.close();
+-            }
+-
+-            return true;
+-        } 
+-        catch (SQLException ex)
+-        {
+-            pz.logError("Could not insert the zone into the database: " + ex.getMessage());
+-            return false;
+-        }
+-    }
+-    
+-    public void deleteZone(Zone _zone)
+-    {
+-        try
+-        {
+-            PreparedStatement ps = connection.prepareStatement(
+-                "DELETE FROM zone WHERE id = ?;");
+-        
+-            ps.setInt(1, _zone.getId());
+-            
+-            ps.executeUpdate();
+-            ps.close();
+-        } 
+-        catch (SQLException ex)
+-        {
+-            pz.logError("Could not delete the zone from the database: " + ex.getMessage());
+-        }
+-    }
+-
+-    private ProtectedZone pz;
+-    private Connection connection;
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Java
++import java.util.ArrayList;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++// SQLLite
++import java.sql.Connection;
++import java.sql.DriverManager;
++import java.sql.PreparedStatement;
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.sql.Statement;
++
++public class ZoneDatabase
++{
++    public ZoneDatabase(ProtectedZone _pz) throws Exception
++    {
++        pz = _pz;
++        
++        Class.forName("org.sqlite.JDBC");
++        connection = DriverManager.getConnection("jdbc:sqlite:ProtectedZone.db");
++    }
++    
++    public void startup()
++    {
++        try
++        {
++            Statement statement = connection.createStatement();
++            
++            statement.executeUpdate(
++                          "CREATE TABLE IF NOT EXISTS zone(" +
++                              "id INTEGER PRIMARY KEY ASC AUTOINCREMENT, " +
++                              "name VARCHAR(100) NULL, " +
++                              "owner VARCHAR(100) NULL, " + 
++                              "x INTEGER, " +
++                              "y INTEGER, " +
++                              "z INTEGER, " +
++                              "width INTEGER, " +
++                              "height INTEGER, " +
++                              "depth INTEGER, " +
++                              "price DECIMAL(65, 2)" + // Matches iConomy
++                          ");");
++            statement.executeUpdate(
++                          "CREATE TABLE IF NOT EXISTS zone_member(" +
++                              "id INTEGER PRIMARY KEY ASC AUTOINCREMENT, " +
++                              "zone_id INTEGER, " +
++                              "player VARCHAR(100)" +
++                          ");");
++            /*statement.executeUpdate(
++                          "CREATE TABLE IF NOT EXISTS member_permission(" +
++                              "id INTEGER PRIMARY KEY ASC AUTOINCREMENT, " +
++                              "member_id INTEGER, " +
++                              "name VARCHAR(100) " +
++                          ");");*/
++            
++            statement.close();
++        } 
++        catch (SQLException ex)
++        {
++            pz.logError("Could not initialise the database: " + ex.getMessage());
++        }
++    }
++    
++    public void shutdown()
++    {
++        try
++        {
++            connection.close();
++        } 
++        catch (SQLException ex)
++        {
++            pz.logError("Could not close the database connection: " + ex.getMessage());
++        }
++    }
++    
++    public Connection getConnection()
++    {
++        return connection;
++    }
++    
++    public ArrayList<Zone> loadZones()
++    {
++        ArrayList<Zone> zones = new ArrayList<Zone>();
++        
++        try
++        {
++            Statement statement = connection.createStatement();
++            
++            ResultSet result = statement.executeQuery("SELECT * FROM zone;");
++            
++            while (result.next())
++            {
++                Zone zone = new Zone(pz, result, null);
++                zones.add(zone);
++            }
++            
++            result.close();
++            statement.close();
++        } 
++        catch (SQLException ex)
++        {
++            pz.logError("Could not load any protected zones from the database: " + ex.getMessage());
++        }
++        
++        return zones;
++    }
++    
++    public boolean saveZone(Zone _zone)
++    {
++        try
++        {
++            if (_zone.hasId()) 
++            {
++                PreparedStatement ps = connection.prepareStatement(
++                    "UPDATE zone SET owner = ?, x = ?, y = ?, z = ?, width = ?, height = ?, depth = ?, price = ? WHERE id = ?;");
++                
++                ps.setString(1, _zone.getOwner());
++                ps.setInt(2, _zone.getX());
++                ps.setInt(3, _zone.getY());
++                ps.setInt(4, _zone.getZ());
++                ps.setInt(5, _zone.getWidth());
++                ps.setInt(6, _zone.getHeight());
++                ps.setInt(7, _zone.getDepth());
++                ps.setDouble(8, _zone.getPrice());
++                ps.setInt(9, _zone.getId());
++                
++                ps.executeUpdate();
++                ps.close();
++            }
++            else
++            {
++                PreparedStatement ps = connection.prepareStatement(
++                    "INSERT INTO zone(owner, x, y, z, width, height, depth, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
++                
++                ps.setString(1, _zone.getOwner());
++                ps.setInt(2, _zone.getX());
++                ps.setInt(3, _zone.getY());
++                ps.setInt(4, _zone.getZ());
++                ps.setInt(5, _zone.getWidth());
++                ps.setInt(6, _zone.getHeight());
++                ps.setInt(7, _zone.getDepth());
++                ps.setDouble(8, _zone.getPrice());
++                
++                ps.executeUpdate();
++                
++                ResultSet insertResult = ps.getGeneratedKeys();
++                _zone.setId(insertResult.getInt(1));
++                insertResult.close();
++                
++                ps.close();
++            }
++
++            return true;
++        } 
++        catch (SQLException ex)
++        {
++            pz.logError("Could not insert the zone into the database: " + ex.getMessage());
++            return false;
++        }
++    }
++    
++    public void deleteZone(Zone _zone)
++    {
++        try
++        {
++            PreparedStatement ps = connection.prepareStatement(
++                "DELETE FROM zone WHERE id = ?;");
++        
++            ps.setInt(1, _zone.getId());
++            
++            ps.executeUpdate();
++            ps.close();
++        } 
++        catch (SQLException ex)
++        {
++            pz.logError("Could not delete the zone from the database: " + ex.getMessage());
++        }
++    }
++
++    private ProtectedZone pz;
++    private Connection connection;
++}
+diff --git a/src/me/ryall/ProtectedZone/Core/ZoneEconomy.java b/src/me/ryall/ProtectedZone/Core/ZoneEconomy.java
+index 77d86b9..a99702a 100644
+--- a/src/me/ryall/ProtectedZone/Core/ZoneEconomy.java
++++ b/src/me/ryall/ProtectedZone/Core/ZoneEconomy.java
+@@ -1,70 +1,70 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-// Bukkit
+-import org.bukkit.Server;
+-import org.bukkit.plugin.Plugin;
+-
+-// iConomy
+-import com.nijiko.coelho.iConomy.iConomy;
+-
+-public class ZoneEconomy
+-{
+-    public ZoneEconomy(ProtectedZone _pz, Server _server)
+-    {
+-        pz = _pz;
+-        server = _server;
+-    }
+-    
+-    public void load()
+-    {
+-        if (iconomy == null && pz.getSettings().useEconomy()) 
+-        {
+-            Plugin plugin = server.getPluginManager().getPlugin("iConomy");
+-            
+-            if (plugin != null)
+-            {
+-                iConomy ic = (iConomy)plugin;
+-                
+-                if (ic.isEnabled())
+-                {
+-                    pz.logInfo("Found and attached to iConomy plugin");
+-                    iconomy = ic;
+-                }
+-            }
+-        }
+-    }
+-    
+-    public boolean isEnabled()
+-    {
+-        return iconomy != null;
+-    }
+-    
+-    public double getBalance(String _name)
+-    {
+-        return !isEnabled() ? 0 : iConomy.getBank().getAccount(_name).getBalance();
+-    }
+-    
+-    public boolean hasFunds(String _name, double _price)
+-    {
+-        return !isEnabled() || getBalance(_name) >= _price;
+-    }
+-    
+-    public void charge(String _name, double _amount)
+-    {
+-        if (isEnabled())
+-            iConomy.getBank().getAccount(_name).subtract(_amount);
+-    }
+-    
+-    public void refund(String _name, double _amount)
+-    {
+-        if (isEnabled())
+-            iConomy.getBank().getAccount(_name).add(_amount);
+-    }
+-    
+-    public ProtectedZone pz;
+-    public Server server;
+-    public iConomy iconomy;
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++// Bukkit
++import org.bukkit.Server;
++import org.bukkit.plugin.Plugin;
++
++// iConomy
++import com.nijiko.coelho.iConomy.iConomy;
++
++public class ZoneEconomy
++{
++    public ZoneEconomy(ProtectedZone _pz, Server _server)
++    {
++        pz = _pz;
++        server = _server;
++    }
++    
++    public void load()
++    {
++        if (iconomy == null && pz.getSettings().useEconomy()) 
++        {
++            Plugin plugin = server.getPluginManager().getPlugin("iConomy");
++            
++            if (plugin != null)
++            {
++                iConomy ic = (iConomy)plugin;
++                
++                if (ic.isEnabled())
++                {
++                    pz.logInfo("Found and attached to iConomy plugin");
++                    iconomy = ic;
++                }
++            }
++        }
++    }
++    
++    public boolean isEnabled()
++    {
++        return iconomy != null;
++    }
++    
++    public double getBalance(String _name)
++    {
++        return !isEnabled() ? 0 : iConomy.getBank().getAccount(_name).getBalance();
++    }
++    
++    public boolean hasFunds(String _name, double _price)
++    {
++        return !isEnabled() || getBalance(_name) >= _price;
++    }
++    
++    public void charge(String _name, double _amount)
++    {
++        if (isEnabled())
++            iConomy.getBank().getAccount(_name).subtract(_amount);
++    }
++    
++    public void refund(String _name, double _amount)
++    {
++        if (isEnabled())
++            iConomy.getBank().getAccount(_name).add(_amount);
++    }
++    
++    public ProtectedZone pz;
++    public Server server;
++    public iConomy iconomy;
++}
+diff --git a/src/me/ryall/ProtectedZone/Core/ZoneManager.java b/src/me/ryall/ProtectedZone/Core/ZoneManager.java
+index 0292e43..e14c6df 100644
+--- a/src/me/ryall/ProtectedZone/Core/ZoneManager.java
++++ b/src/me/ryall/ProtectedZone/Core/ZoneManager.java
+@@ -1,305 +1,305 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Java
+-import java.util.ArrayList;
+-import java.util.HashMap;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-// Bukkit
+-import org.bukkit.ChatColor;
+-import org.bukkit.block.Block;
+-import org.bukkit.block.Sign;
+-import org.bukkit.entity.Player;
+-import org.bukkit.event.block.SignChangeEvent;
+-
+-public class ZoneManager 
+-{
+-	public ZoneManager(ProtectedZone _pz)
+-	{
+-	    pz = _pz;
+-	    zones = pz.getDatabase().loadZones();
+-	    selectedZones = new HashMap<String, Zone>();
+-	}
+-	
+-    public void define(Player _player, SignChangeEvent _event)
+-    {
+-        // Define the area if we can.
+-        if (pz.getPermissions().hasDefinePermission(_player))
+-        {
+-            // Get the size from the second line.
+-            String[] size = _event.getLine(1).split("x");
+-            int sizeX, sizeY, sizeZ;
+-            
+-            try
+-            {
+-                if (size.length != 3)
+-                    throw new Exception();
+-                
+-                sizeX   = java.lang.Math.max(java.lang.Math.min(Integer.parseInt(size[0]), pz.getSettings().getMaxX()), 1);
+-                sizeY   = java.lang.Math.max(java.lang.Math.min(Integer.parseInt(size[1]), pz.getSettings().getMaxY()), 1);
+-                sizeZ   = java.lang.Math.max(java.lang.Math.min(Integer.parseInt(size[2]), pz.getSettings().getMaxZ()), 1);
+-                
+-                _event.setLine(1, sizeX + "x" + sizeY + "x" + sizeZ);
+-            }
+-            catch (Exception ex)
+-            {
+-                invalidateSign(_player, _event, "You must supply the zone size on the second line in the format: <SizeX>x<SizeY>x<SizeZ> (odd numbers only e.g. 5x9x5)");
+-                return;
+-            }
+-            
+-            if (sizeX % 2 != 1 || sizeY % 2 != 1 || sizeZ % 2 != 1)
+-            {
+-                invalidateSign(_player, _event, "Only odd numbers can be used for the zone size");
+-                return;
+-            }
+-         
+-            // Get the mode from the third line.
+-            String mode = _event.getLine(2);
+-            
+-            if (mode.length() == 0 || mode.equalsIgnoreCase(Zone.MODE_AVAILABLE))
+-                _event.setLine(2, Zone.MODE_AVAILABLE);
+-            else if (mode.equalsIgnoreCase(Zone.MODE_FOR_SALE))
+-                _event.setLine(2, Zone.MODE_FOR_SALE);
+-            else
+-            {
+-                invalidateSign(_player, _event, "Invalid mode on the third line. Valid modes include: 'Available' and 'For Sale'");
+-                return;
+-            }
+-            
+-            // Get the price from the fourth line (if it exists).
+-            String signPrice = _event.getLine(3);
+-            double price = 0;
+-            
+-            if (signPrice.startsWith("$"))
+-                signPrice = signPrice.substring(1);
+-            
+-            try
+-            {
+-                if (mode.equalsIgnoreCase(Zone.MODE_FOR_SALE))
+-                {
+-                    price = java.lang.Math.max(java.lang.Math.min(Double.parseDouble(signPrice), pz.getSettings().getMaxPrice()), 0);
+-                    _event.setLine(3, "$" + price);
+-                }
+-            }
+-            catch (Exception ex)
+-            {
+-                invalidateSign(_player, _event, "If the zone is for sale you must supply a price on the fourth line in the format: $<Price> (e.g. $1000)");
+-                return;
+-            }
+-            
+-            // Create the new zone if all is good with the parameters.
+-            Zone newZone = new Zone(pz, _event.getBlock().getX(), _event.getBlock().getY(), _event.getBlock().getZ(), sizeX, sizeY, sizeZ, price);
+-            
+-            // Check that the zone does not conflict with any other zones.
+-            for (Zone existingZone : zones)
+-            {
+-                if (newZone.conflictsWith(existingZone))
+-                {
+-                    if (pz.getPermissions().hasSubDefinePermission(_player, existingZone))
+-                    {
+-                        if (!newZone.isWithin(existingZone))
+-                        {
+-                            invalidateSign(_player, _event, "The subzone is outside of the parent zone");
+-                            _event.setLine(2, "Out Of Bounds");
+-                        
+-                            return;
+-                        }
+-                    }
+-                    else
+-                    {
+-                        if (existingZone.getOwner() == null)
+-                            invalidateSign(_player, _event, "The zone conflicts with another zone that has no owner");
+-                        else
+-                            invalidateSign(_player, _event, "The zone conflicts with another zone owned by: " + existingZone.getOwner());
+-                    
+-                        _event.setLine(2, "Conflict");
+-                    
+-                        return;
+-                    }
+-                }
+-            }
+-            
+-            // Finally add the zone to the internal list if we've successfully validated everything.
+-            zones.add(newZone);
+-            pz.getDatabase().saveZone(newZone);
+-            
+-            validateSign(_player, _event);
+-            _player.sendMessage(pz.getChatHeader() + "The new zone has been successfully defined");
+-        }
+-        else
+-            invalidateSign(_player, _event, "You don't have permission to define zones here");
+-    }
+-
+-    public void activate(Player _player, Sign _sign)
+-    {
+-        // Claim the area if we can.
+-        Zone zone = getZoneAt(_sign.getBlock().getX(), _sign.getBlock().getY(), _sign.getBlock().getZ());
+-        
+-        if (zone != null)
+-        {
+-            if (pz.getPermissions().hasActivatePermission(_player, zone))
+-            {
+-                // If it doesn't have an owner, it's claimable.
+-                selectedZones.put(_player.getName(), zone);
+-                
+-                if (!zone.hasOwner())
+-                {
+-                    String claimInstructions = "Zone selected, type " + ChatColor.AQUA + "/pz claim " + ChatColor.WHITE + "to claim this zone";
+-                
+-                    if (!zone.isFree())
+-                        claimInstructions += " for " + ChatColor.GOLD + "$" + zone.getPrice();
+-                    
+-                    _player.sendMessage(pz.getChatHeader() + claimInstructions);
+-                }
+-                else
+-                    _player.sendMessage(pz.getChatHeader() + "Zone selected");
+-            }
+-
+-            if (zone.hasOwner())
+-            {
+-                if (zone.isOwner(_player))
+-                    _player.sendMessage(pz.getChatHeader() + "You own this zone"); 
+-                else
+-                    _player.sendMessage(pz.getChatHeader() + "This zone is owned by: " + zone.getOwner()); 
+-            }
+-            else
+-                _player.sendMessage(pz.getChatHeader() + "This zone has not been claimed");         
+-        }
+-        else
+-            _player.sendMessage(pz.getChatErrorHeader() + "The zone could not be matched internally. Please recreate it and try again");
+-    }
+-
+-    public void claim(Player _player)
+-    {
+-        Zone selectedZone = selectedZones.get(_player.getName());
+-        
+-        if (selectedZone != null)
+-        {
+-            if (pz.getPermissions().hasClaimPermission(_player))
+-            {
+-                if (!selectedZone.hasOwner())
+-                {
+-                    if (!selectedZone.isFree())
+-                    {
+-                        if (pz.getEconomy().hasFunds(_player.getName(), selectedZone.getPrice()))
+-                            pz.getEconomy().charge(_player.getName(), selectedZone.getPrice());
+-                        else
+-                        {
+-                            _player.sendMessage(pz.getChatErrorHeader() + "You don't have sufficient funds to claim this zone");
+-                            return;
+-                        }
+-                    }
+-                    
+-                    selectedZone.setOwner(_player.getName());
+-                    selectedZone.updateSign(_player.getWorld());
+-                    
+-                    pz.getDatabase().saveZone(selectedZone);
+-                    
+-                    _player.sendMessage(pz.getChatHeader() + "You have successfully claimed this zone");
+-                }
+-                else if (selectedZone.getOwner() == _player.getName())
+-                    _player.sendMessage(pz.getChatErrorHeader() + "You already own this zone");
+-                else
+-                    _player.sendMessage(pz.getChatErrorHeader() + "This zone has already been claimed by: " + selectedZone.getOwner());
+-            }
+-            else
+-                _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to claim zones");
+-        }
+-        else
+-            _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before claiming");
+-    }
+-    
+-    public void release(Player _player)
+-    {
+-        Zone selectedZone = selectedZones.get(_player.getName());
+-        
+-        if (selectedZone != null)
+-        {
+-            if (pz.getPermissions().hasReleasePermission(_player, selectedZone))
+-            {
+-                if (selectedZone.hasOwner())
+-                {
+-                    selectedZone.setOwner(null);
+-                    selectedZone.updateSign(_player.getWorld());
+-                    
+-                    pz.getDatabase().saveZone(selectedZone);
+-
+-                    _player.sendMessage(pz.getChatHeader() + "You have successfully released this zone");
+-                }
+-                else
+-                    _player.sendMessage(pz.getChatErrorHeader() + "This zone has no owner");
+-            }
+-            else
+-                _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to release this zone");
+-        }
+-        else
+-            _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before releasing");
+-    }
+-    
+-    public boolean destroy(Player _player, Zone _zone)
+-    {
+-        if (pz.getPermissions().hasDestroyPermission(_player))
+-        {
+-            if (!_zone.hasOwner())
+-            {
+-                pz.getDatabase().deleteZone(_zone);
+-                zones.remove(_zone);
+-                
+-                _player.sendMessage(pz.getChatHeader() + "The zone was successfully destroyed");
+-                
+-                return true;
+-            }
+-            else
+-            {
+-                if (_zone.isOwner(_player))
+-                    _player.sendMessage(pz.getChatHeader() + "Claimed zones must be released before they can be destroyed. Type " + 
+-                               ChatColor.AQUA + "/pz release " + ChatColor.WHITE + "to release this zone");
+-                else
+-                    _player.sendMessage(pz.getChatErrorHeader() + "Only the zone owner can release this zone");
+-            }
+-        }
+-        else
+-            _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to destroy this zone");
+-        
+-        return false;
+-    }
+-    
+-    private void validateSign(Player _player, SignChangeEvent _event)
+-    {
+-        _event.setLine(0, Zone.SIGN_VALID); 
+-    }
+-    
+-    private void invalidateSign(Player _player, SignChangeEvent _event, String _message)
+-    {
+-        _player.sendMessage(pz.getChatErrorHeader() + _message);
+-        _event.setLine(0, Zone.SIGN_INVALID);
+-    }
+-	
+-    private Zone getZoneAt(int _x, int _y, int _z)
+-    {
+-        for (Zone zone : zones)
+-        {
+-            if (zone.getX() == _x && zone.getY() == _y && zone.getZ() == _z)
+-                return zone;
+-        }
+-        
+-        return null;
+-    }
+-    
+-    public Zone getZoneContaining(Block _block) 
+-    {
+-        for (Zone zone : zones)
+-        {
+-            if (zone.containsBlock(_block))
+-                return zone;
+-        }
+-        
+-        return null;
+-    }
+-	
+-	private ProtectedZone pz;
+-	private ArrayList<Zone> zones;
+-	private HashMap<String, Zone> selectedZones;
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Java
++import java.util.ArrayList;
++import java.util.HashMap;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++// Bukkit
++import org.bukkit.ChatColor;
++import org.bukkit.block.Block;
++import org.bukkit.block.Sign;
++import org.bukkit.entity.Player;
++import org.bukkit.event.block.SignChangeEvent;
++
++public class ZoneManager 
++{
++	public ZoneManager(ProtectedZone _pz)
++	{
++	    pz = _pz;
++	    zones = pz.getDatabase().loadZones();
++	    selectedZones = new HashMap<String, Zone>();
++	}
++	
++    public void define(Player _player, SignChangeEvent _event)
++    {
++        // Define the area if we can.
++        if (pz.getPermissions().hasDefinePermission(_player))
++        {
++            // Get the size from the second line.
++            String[] size = _event.getLine(1).split("x");
++            int sizeX, sizeY, sizeZ;
++            
++            try
++            {
++                if (size.length != 3)
++                    throw new Exception();
++                
++                sizeX   = java.lang.Math.max(java.lang.Math.min(Integer.parseInt(size[0]), pz.getSettings().getMaxX()), 1);
++                sizeY   = java.lang.Math.max(java.lang.Math.min(Integer.parseInt(size[1]), pz.getSettings().getMaxY()), 1);
++                sizeZ   = java.lang.Math.max(java.lang.Math.min(Integer.parseInt(size[2]), pz.getSettings().getMaxZ()), 1);
++                
++                _event.setLine(1, sizeX + "x" + sizeY + "x" + sizeZ);
++            }
++            catch (Exception ex)
++            {
++                invalidateSign(_player, _event, "You must supply the zone size on the second line in the format: <SizeX>x<SizeY>x<SizeZ> (odd numbers only e.g. 5x9x5)");
++                return;
++            }
++            
++            if (sizeX % 2 != 1 || sizeY % 2 != 1 || sizeZ % 2 != 1)
++            {
++                invalidateSign(_player, _event, "Only odd numbers can be used for the zone size");
++                return;
++            }
++         
++            // Get the mode from the third line.
++            String mode = _event.getLine(2);
++            
++            if (mode.length() == 0 || mode.equalsIgnoreCase(Zone.MODE_AVAILABLE))
++                _event.setLine(2, Zone.MODE_AVAILABLE);
++            else if (mode.equalsIgnoreCase(Zone.MODE_FOR_SALE))
++                _event.setLine(2, Zone.MODE_FOR_SALE);
++            else
++            {
++                invalidateSign(_player, _event, "Invalid mode on the third line. Valid modes include: 'Available' and 'For Sale'");
++                return;
++            }
++            
++            // Get the price from the fourth line (if it exists).
++            String signPrice = _event.getLine(3);
++            double price = 0;
++            
++            if (signPrice.startsWith("$"))
++                signPrice = signPrice.substring(1);
++            
++            try
++            {
++                if (mode.equalsIgnoreCase(Zone.MODE_FOR_SALE))
++                {
++                    price = java.lang.Math.max(java.lang.Math.min(Double.parseDouble(signPrice), pz.getSettings().getMaxPrice()), 0);
++                    _event.setLine(3, "$" + price);
++                }
++            }
++            catch (Exception ex)
++            {
++                invalidateSign(_player, _event, "If the zone is for sale you must supply a price on the fourth line in the format: $<Price> (e.g. $1000)");
++                return;
++            }
++            
++            // Create the new zone if all is good with the parameters.
++            Zone newZone = new Zone(pz, _event.getBlock().getX(), _event.getBlock().getY(), _event.getBlock().getZ(), sizeX, sizeY, sizeZ, price);
++            
++            // Check that the zone does not conflict with any other zones.
++            for (Zone existingZone : zones)
++            {
++                if (newZone.conflictsWith(existingZone))
++                {
++                    if (pz.getPermissions().hasSubDefinePermission(_player, existingZone))
++                    {
++                        if (!newZone.isWithin(existingZone))
++                        {
++                            invalidateSign(_player, _event, "The subzone is outside of the parent zone");
++                            _event.setLine(2, "Out Of Bounds");
++                        
++                            return;
++                        }
++                    }
++                    else
++                    {
++                        if (existingZone.getOwner() == null)
++                            invalidateSign(_player, _event, "The zone conflicts with another zone that has no owner");
++                        else
++                            invalidateSign(_player, _event, "The zone conflicts with another zone owned by: " + existingZone.getOwner());
++                    
++                        _event.setLine(2, "Conflict");
++                    
++                        return;
++                    }
++                }
++            }
++            
++            // Finally add the zone to the internal list if we've successfully validated everything.
++            zones.add(newZone);
++            pz.getDatabase().saveZone(newZone);
++            
++            validateSign(_player, _event);
++            _player.sendMessage(pz.getChatHeader() + "The new zone has been successfully defined");
++        }
++        else
++            invalidateSign(_player, _event, "You don't have permission to define zones here");
++    }
++
++    public void activate(Player _player, Sign _sign)
++    {
++        // Claim the area if we can.
++        Zone zone = getZoneAt(_sign.getBlock().getX(), _sign.getBlock().getY(), _sign.getBlock().getZ());
++        
++        if (zone != null)
++        {
++            if (pz.getPermissions().hasActivatePermission(_player, zone))
++            {
++                // If it doesn't have an owner, it's claimable.
++                selectedZones.put(_player.getName(), zone);
++                
++                if (!zone.hasOwner())
++                {
++                    String claimInstructions = "Zone selected, type " + ChatColor.AQUA + "/pz claim " + ChatColor.WHITE + "to claim this zone";
++                
++                    if (!zone.isFree())
++                        claimInstructions += " for " + ChatColor.GOLD + "$" + zone.getPrice();
++                    
++                    _player.sendMessage(pz.getChatHeader() + claimInstructions);
++                }
++                else
++                    _player.sendMessage(pz.getChatHeader() + "Zone selected");
++            }
++
++            if (zone.hasOwner())
++            {
++                if (zone.isOwner(_player))
++                    _player.sendMessage(pz.getChatHeader() + "You own this zone"); 
++                else
++                    _player.sendMessage(pz.getChatHeader() + "This zone is owned by: " + zone.getOwner()); 
++            }
++            else
++                _player.sendMessage(pz.getChatHeader() + "This zone has not been claimed");         
++        }
++        else
++            _player.sendMessage(pz.getChatErrorHeader() + "The zone could not be matched internally. Please recreate it and try again");
++    }
++
++    public void claim(Player _player)
++    {
++        Zone selectedZone = selectedZones.get(_player.getName());
++        
++        if (selectedZone != null)
++        {
++            if (pz.getPermissions().hasClaimPermission(_player))
++            {
++                if (!selectedZone.hasOwner())
++                {
++                    if (!selectedZone.isFree())
++                    {
++                        if (pz.getEconomy().hasFunds(_player.getName(), selectedZone.getPrice()))
++                            pz.getEconomy().charge(_player.getName(), selectedZone.getPrice());
++                        else
++                        {
++                            _player.sendMessage(pz.getChatErrorHeader() + "You don't have sufficient funds to claim this zone");
++                            return;
++                        }
++                    }
++                    
++                    selectedZone.setOwner(_player.getName());
++                    selectedZone.updateSign(_player.getWorld());
++                    
++                    pz.getDatabase().saveZone(selectedZone);
++                    
++                    _player.sendMessage(pz.getChatHeader() + "You have successfully claimed this zone");
++                }
++                else if (selectedZone.getOwner() == _player.getName())
++                    _player.sendMessage(pz.getChatErrorHeader() + "You already own this zone");
++                else
++                    _player.sendMessage(pz.getChatErrorHeader() + "This zone has already been claimed by: " + selectedZone.getOwner());
++            }
++            else
++                _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to claim zones");
++        }
++        else
++            _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before claiming");
++    }
++    
++    public void release(Player _player)
++    {
++        Zone selectedZone = selectedZones.get(_player.getName());
++        
++        if (selectedZone != null)
++        {
++            if (pz.getPermissions().hasReleasePermission(_player, selectedZone))
++            {
++                if (selectedZone.hasOwner())
++                {
++                    selectedZone.setOwner(null);
++                    selectedZone.updateSign(_player.getWorld());
++                    
++                    pz.getDatabase().saveZone(selectedZone);
++
++                    _player.sendMessage(pz.getChatHeader() + "You have successfully released this zone");
++                }
++                else
++                    _player.sendMessage(pz.getChatErrorHeader() + "This zone has no owner");
++            }
++            else
++                _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to release this zone");
++        }
++        else
++            _player.sendMessage(pz.getChatErrorHeader() + "Please select a valid zone sign by right-clicking it before releasing");
++    }
++    
++    public boolean destroy(Player _player, Zone _zone)
++    {
++        if (pz.getPermissions().hasDestroyPermission(_player))
++        {
++            if (!_zone.hasOwner())
++            {
++                pz.getDatabase().deleteZone(_zone);
++                zones.remove(_zone);
++                
++                _player.sendMessage(pz.getChatHeader() + "The zone was successfully destroyed");
++                
++                return true;
++            }
++            else
++            {
++                if (_zone.isOwner(_player))
++                    _player.sendMessage(pz.getChatHeader() + "Claimed zones must be released before they can be destroyed. Type " + 
++                               ChatColor.AQUA + "/pz release " + ChatColor.WHITE + "to release this zone");
++                else
++                    _player.sendMessage(pz.getChatErrorHeader() + "Only the zone owner can release this zone");
++            }
++        }
++        else
++            _player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to destroy this zone");
++        
++        return false;
++    }
++    
++    private void validateSign(Player _player, SignChangeEvent _event)
++    {
++        _event.setLine(0, Zone.SIGN_VALID); 
++    }
++    
++    private void invalidateSign(Player _player, SignChangeEvent _event, String _message)
++    {
++        _player.sendMessage(pz.getChatErrorHeader() + _message);
++        _event.setLine(0, Zone.SIGN_INVALID);
++    }
++	
++    private Zone getZoneAt(int _x, int _y, int _z)
++    {
++        for (Zone zone : zones)
++        {
++            if (zone.getX() == _x && zone.getY() == _y && zone.getZ() == _z)
++                return zone;
++        }
++        
++        return null;
++    }
++    
++    public Zone getZoneContaining(Block _block) 
++    {
++        for (Zone zone : zones)
++        {
++            if (zone.containsBlock(_block))
++                return zone;
++        }
++        
++        return null;
++    }
++	
++	private ProtectedZone pz;
++	private ArrayList<Zone> zones;
++	private HashMap<String, Zone> selectedZones;
++}
+diff --git a/src/me/ryall/ProtectedZone/Core/ZonePermissions.java b/src/me/ryall/ProtectedZone/Core/ZonePermissions.java
+index b941f88..1288446 100644
+--- a/src/me/ryall/ProtectedZone/Core/ZonePermissions.java
++++ b/src/me/ryall/ProtectedZone/Core/ZonePermissions.java
+@@ -1,90 +1,90 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-// Bukkit
+-import org.bukkit.Server;
+-import org.bukkit.entity.Player;
+-import org.bukkit.plugin.Plugin;
+-
+-//Permissions
+-import com.nijiko.permissions.PermissionHandler;
+-import com.nijikokun.bukkit.Permissions.Permissions;
+-
+-public class ZonePermissions 
+-{
+-	public ZonePermissions(ProtectedZone _pz, Server _server)
+-    {
+-        pz = _pz;
+-        server = _server;
+-    }
+-	
+-    public void load()
+-    {
+-        if (permissions == null) 
+-        {
+-            Plugin plugin = server.getPluginManager().getPlugin("Permissions");
+-            
+-            if (plugin != null)
+-            {
+-                pz.logInfo("Found and attached to Permissions plugin");
+-                permissions = ((Permissions)plugin).getHandler();
+-            }
+-        }
+-    }
+-	
+-	public boolean hasDefinePermission(Player _player)
+-	{
+-		return hasGlobalPermission(_player) || permissions.has(_player, "protectedzone.define");
+-	}
+-	
+-    public boolean hasSubDefinePermission(Player _player, Zone _zone)
+-    {
+-        return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.subdefine") && _zone.isOwner(_player));
+-    }
+-    
+-    public boolean hasDestroyPermission(Player _player)
+-    {
+-        return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.destroy"));
+-    }
+-    
+-	public boolean hasClaimPermission(Player _player)
+-	{
+-		return hasGlobalPermission(_player) || permissions.has(_player, "protectedzone.claim");
+-	}
+-	
+-	public boolean hasReleasePermission(Player _player, Zone _zone)
+-	{
+-		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.release") && _zone.isOwner(_player));
+-	}
+-	
+-    public boolean hasActivatePermission(Player _player, Zone _zone)
+-    {
+-        return hasClaimPermission(_player) || hasReleasePermission(_player, _zone);
+-    }
+-	
+-	public boolean hasAddPermission(Player _player, Zone _zone)
+-	{
+-		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.add") && _zone.isOwner(_player));
+-	}
+-	
+-	public boolean hasRemovePermission(Player _player, Zone _zone)
+-	{
+-		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.remove") && _zone.isOwner(_player));
+-	}
+-	
+-	public boolean hasOwnerPermission(Player _player, Zone _zone)
+-	{
+-		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.owner") && _zone.isOwner(_player));
+-	}
+-	
+-	protected boolean hasGlobalPermission(Player _player)
+-	{
+-		return (permissions == null && _player.isOp()) || permissions.has(_player, "protectedzone.*") || permissions.has(_player, "*");
+-	}
+-	
+-	public ProtectedZone pz;
+-	public Server server;
+-	public PermissionHandler permissions;
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++// Bukkit
++import org.bukkit.Server;
++import org.bukkit.entity.Player;
++import org.bukkit.plugin.Plugin;
++
++//Permissions
++import com.nijiko.permissions.PermissionHandler;
++import com.nijikokun.bukkit.Permissions.Permissions;
++
++public class ZonePermissions 
++{
++	public ZonePermissions(ProtectedZone _pz, Server _server)
++    {
++        pz = _pz;
++        server = _server;
++    }
++	
++    public void load()
++    {
++        if (permissions == null) 
++        {
++            Plugin plugin = server.getPluginManager().getPlugin("Permissions");
++            
++            if (plugin != null)
++            {
++                pz.logInfo("Found and attached to Permissions plugin");
++                permissions = ((Permissions)plugin).getHandler();
++            }
++        }
++    }
++	
++	public boolean hasDefinePermission(Player _player)
++	{
++		return hasGlobalPermission(_player) || permissions.has(_player, "protectedzone.define");
++	}
++	
++    public boolean hasSubDefinePermission(Player _player, Zone _zone)
++    {
++        return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.subdefine") && _zone.isOwner(_player));
++    }
++    
++    public boolean hasDestroyPermission(Player _player)
++    {
++        return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.destroy"));
++    }
++    
++	public boolean hasClaimPermission(Player _player)
++	{
++		return hasGlobalPermission(_player) || permissions.has(_player, "protectedzone.claim");
++	}
++	
++	public boolean hasReleasePermission(Player _player, Zone _zone)
++	{
++		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.release") && _zone.isOwner(_player));
++	}
++	
++    public boolean hasActivatePermission(Player _player, Zone _zone)
++    {
++        return hasClaimPermission(_player) || hasReleasePermission(_player, _zone);
++    }
++	
++	public boolean hasAddPermission(Player _player, Zone _zone)
++	{
++		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.add") && _zone.isOwner(_player));
++	}
++	
++	public boolean hasRemovePermission(Player _player, Zone _zone)
++	{
++		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.remove") && _zone.isOwner(_player));
++	}
++	
++	public boolean hasOwnerPermission(Player _player, Zone _zone)
++	{
++		return hasGlobalPermission(_player) || (permissions.has(_player, "protectedzone.owner") && _zone.isOwner(_player));
++	}
++	
++	protected boolean hasGlobalPermission(Player _player)
++	{
++		return (permissions == null && _player.isOp()) || permissions.has(_player, "protectedzone.*") || permissions.has(_player, "*");
++	}
++	
++	public ProtectedZone pz;
++	public Server server;
++	public PermissionHandler permissions;
++}
+diff --git a/src/me/ryall/ProtectedZone/Core/ZoneSettings.java b/src/me/ryall/ProtectedZone/Core/ZoneSettings.java
+index acdb90b..4f59e4d 100644
+--- a/src/me/ryall/ProtectedZone/Core/ZoneSettings.java
++++ b/src/me/ryall/ProtectedZone/Core/ZoneSettings.java
+@@ -1,46 +1,46 @@
+-package me.ryall.ProtectedZone.Core;
+-
+-// Internal
+-import me.ryall.ProtectedZone.ProtectedZone;
+-
+-public class ZoneSettings 
+-{
+-	public ZoneSettings(ProtectedZone _pz)
+-    {
+-    }
+-
+-    public boolean ignoreY()
+-    {
+-        return false;
+-    }
+-	
+-    public int getMaxX() 
+-	{
+-		return 99;
+-	}
+-	
+-	public int getMaxY() 
+-	{
+-		return 99;
+-	}
+-	
+-	public int getMaxZ() 
+-	{
+-		return 99;
+-	}
+-
+-    public int getMaxPrice()
+-    {
+-        return 999999;
+-    }
+-
+-    public boolean useEconomy()
+-    {
+-        return true;
+-    }
+-
+-    public boolean canEditWorld()
+-    {
+-        return true;
+-    }
+-}
++package me.ryall.ProtectedZone.Core;
++
++// Internal
++import me.ryall.ProtectedZone.ProtectedZone;
++
++public class ZoneSettings 
++{
++	public ZoneSettings(ProtectedZone _pz)
++    {
++    }
++
++    public boolean ignoreY()
++    {
++        return false;
++    }
++	
++    public int getMaxX() 
++	{
++		return 99;
++	}
++	
++	public int getMaxY() 
++	{
++		return 99;
++	}
++	
++	public int getMaxZ() 
++	{
++		return 99;
++	}
++
++    public int getMaxPrice()
++    {
++        return 999999;
++    }
++
++    public boolean useEconomy()
++    {
++        return true;
++    }
++
++    public boolean canEditWorld()
++    {
++        return true;
++    }
++}
+diff --git a/src/me/ryall/ProtectedZone/EventListener.java b/src/me/ryall/ProtectedZone/EventListener.java
+index 84651d0..1ad7926 100644
+--- a/src/me/ryall/ProtectedZone/EventListener.java
++++ b/src/me/ryall/ProtectedZone/EventListener.java
+@@ -1,123 +1,123 @@
+-package me.ryall.ProtectedZone;
+-
+-// Internal
+-//import me.ryall.ProtectedZone.Core.Zone;
+-
+-// Bukkit
+-import me.ryall.ProtectedZone.Core.Zone;
+-
+-import org.bukkit.block.Sign;
+-import org.bukkit.entity.Player;
+-import org.bukkit.event.block.BlockBreakEvent;
+-import org.bukkit.event.block.BlockListener;
+-import org.bukkit.event.block.BlockPlaceEvent;
+-import org.bukkit.event.block.BlockRightClickEvent;
+-import org.bukkit.event.block.SignChangeEvent;
+-
+-public class EventListener extends BlockListener
+-{	
+-	public EventListener(ProtectedZone _pz)
+-	{
+-		pz = _pz;
+-	}
+-	
+-	public void onBlockBreak(BlockBreakEvent _event) 
+-	{       
+-	    Player player = _event.getPlayer();
+-        Zone zone = pz.getManager().getZoneContaining(_event.getBlock());
+-        
+-        // Only allow specific users to break blocks.
+-        if (zone != null)
+-        {
+-            // Prevent zone signs from being destroyed while active.
+-            switch (_event.getBlock().getType())
+-            {
+-            case WALL_SIGN:
+-            case SIGN_POST:
+-            {
+-                Sign sign = (Sign)_event.getBlock().getState();
+-                
+-                if (sign.getLine(0).equalsIgnoreCase(Zone.SIGN_VALID))
+-                {
+-                    if (zone.isAt(sign.getX(), sign.getY(), sign.getZ()))
+-                    {
+-                        if (!pz.getManager().destroy(player, zone))
+-                            _event.setCancelled(true);
+-                        
+-                        // Don't continue with the normal checks.
+-                        return;                        
+-                    }
+-                }
+-            }
+-            break;
+-            }
+-            
+-            if (!zone.canBuild(player))
+-            {
+-                _event.setCancelled(true);
+-            
+-                if (zone.isNoticeEnabled())
+-                    player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
+-            }
+-        }
+-	}
+-	
+-	public void onBlockPlace(BlockPlaceEvent _event)
+-	{
+-	    Player player = _event.getPlayer();
+-        Zone zone = pz.getManager().getZoneContaining(_event.getBlock());
+-        
+-        // Only allow specific users to place blocks.
+-        if (zone != null && !zone.canBuild(player))
+-        {
+-            _event.setCancelled(true);
+-            
+-            if (zone.isNoticeEnabled())
+-                player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
+-        }
+-	}
+-	
+-	public void onSignChange(SignChangeEvent _event)
+-	{
+-	    // Define zones if we have permission and the sign format is correct.
+-	    Player player = _event.getPlayer();
+-	    
+-        if (_event.getLine(0).equalsIgnoreCase(Zone.SIGN_CHECK))
+-            pz.getManager().define(player, _event);
+-	}
+-	
+-	public void onBlockRightClick(BlockRightClickEvent _event)
+-	{
+-	    // If we right click a valid sign, we should present the player with a command to claim it or provide info.
+-	    switch (_event.getBlock().getType())
+-	    {
+-	    case WALL_SIGN:
+-	    case SIGN_POST:
+-	    {
+-	        Player player = _event.getPlayer();
+-	        Sign sign = (Sign)_event.getBlock().getState();
+-	        
+-	        if (sign.getLine(0).equalsIgnoreCase(Zone.SIGN_VALID))
+-	            pz.getManager().activate(player, sign);
+-	    }
+-	    break;
+-	    }
+-	}
+-	    
+-	/*protected void processBlockChange(BlockEvent event)
+-	{
+-	    Player player = event.getPlayer();
+-	    Zone zone = pz.getManager().getZone(event.getBlock());
+-        
+-        // Only allow specific users to break protected blocks.
+-        if (zone != null && !zone.canBuild(player))
+-        {
+-            event.setCancelled(true);
+-            
+-            if (zone.isNoticeEnabled())
+-                player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
+-        }
+-	}*/
+-	
+-	protected ProtectedZone pz;
+-}
++package me.ryall.ProtectedZone;
++
++// Internal
++//import me.ryall.ProtectedZone.Core.Zone;
++
++// Bukkit
++import me.ryall.ProtectedZone.Core.Zone;
++
++import org.bukkit.block.Sign;
++import org.bukkit.entity.Player;
++import org.bukkit.event.block.BlockBreakEvent;
++import org.bukkit.event.block.BlockListener;
++import org.bukkit.event.block.BlockPlaceEvent;
++import org.bukkit.event.block.BlockRightClickEvent;
++import org.bukkit.event.block.SignChangeEvent;
++
++public class EventListener extends BlockListener
++{	
++	public EventListener(ProtectedZone _pz)
++	{
++		pz = _pz;
++	}
++	
++	public void onBlockBreak(BlockBreakEvent _event) 
++	{       
++	    Player player = _event.getPlayer();
++        Zone zone = pz.getManager().getZoneContaining(_event.getBlock());
++        
++        // Only allow specific users to break blocks.
++        if (zone != null)
++        {
++            // Prevent zone signs from being destroyed while active.
++            switch (_event.getBlock().getType())
++            {
++            case WALL_SIGN:
++            case SIGN_POST:
++            {
++                Sign sign = (Sign)_event.getBlock().getState();
++                
++                if (sign.getLine(0).equalsIgnoreCase(Zone.SIGN_VALID))
++                {
++                    if (zone.isAt(sign.getX(), sign.getY(), sign.getZ()))
++                    {
++                        if (!pz.getManager().destroy(player, zone))
++                            _event.setCancelled(true);
++                        
++                        // Don't continue with the normal checks.
++                        return;                        
++                    }
++                }
++            }
++            break;
++            }
++            
++            if (!zone.canBuild(player))
++            {
++                _event.setCancelled(true);
++            
++                if (zone.isNoticeEnabled())
++                    player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
++            }
++        }
++	}
++	
++	public void onBlockPlace(BlockPlaceEvent _event)
++	{
++	    Player player = _event.getPlayer();
++        Zone zone = pz.getManager().getZoneContaining(_event.getBlock());
++        
++        // Only allow specific users to place blocks.
++        if (zone != null && !zone.canBuild(player))
++        {
++            _event.setCancelled(true);
++            
++            if (zone.isNoticeEnabled())
++                player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
++        }
++	}
++	
++	public void onSignChange(SignChangeEvent _event)
++	{
++	    // Define zones if we have permission and the sign format is correct.
++	    Player player = _event.getPlayer();
++	    
++        if (_event.getLine(0).equalsIgnoreCase(Zone.SIGN_CHECK))
++            pz.getManager().define(player, _event);
++	}
++	
++	public void onBlockRightClick(BlockRightClickEvent _event)
++	{
++	    // If we right click a valid sign, we should present the player with a command to claim it or provide info.
++	    switch (_event.getBlock().getType())
++	    {
++	    case WALL_SIGN:
++	    case SIGN_POST:
++	    {
++	        Player player = _event.getPlayer();
++	        Sign sign = (Sign)_event.getBlock().getState();
++	        
++	        if (sign.getLine(0).equalsIgnoreCase(Zone.SIGN_VALID))
++	            pz.getManager().activate(player, sign);
++	    }
++	    break;
++	    }
++	}
++	    
++	/*protected void processBlockChange(BlockEvent event)
++	{
++	    Player player = event.getPlayer();
++	    Zone zone = pz.getManager().getZone(event.getBlock());
++        
++        // Only allow specific users to break protected blocks.
++        if (zone != null && !zone.canBuild(player))
++        {
++            event.setCancelled(true);
++            
++            if (zone.isNoticeEnabled())
++                player.sendMessage(pz.getChatErrorHeader() + "You don't have permission to make changes in this zone");
++        }
++	}*/
++	
++	protected ProtectedZone pz;
++}
+diff --git a/src/me/ryall/ProtectedZone/PluginListener.java b/src/me/ryall/ProtectedZone/PluginListener.java
+index c453cf3..fabd7aa 100644
+--- a/src/me/ryall/ProtectedZone/PluginListener.java
++++ b/src/me/ryall/ProtectedZone/PluginListener.java
+@@ -1,21 +1,21 @@
+-package me.ryall.ProtectedZone;
+-
+-// Bukkit
+-import org.bukkit.event.server.PluginEvent;
+-import org.bukkit.event.server.ServerListener;
+-
+-public class PluginListener extends ServerListener 
+-{
+-    public PluginListener(ProtectedZone _pz) 
+-    {
+-        pz = _pz;
+-    }
+-    
+-    public void onPluginEnabled(PluginEvent _event) 
+-    {
+-        pz.getPermissions().load();
+-        pz.getEconomy().load();
+-    }
+-    
+-    private ProtectedZone pz;   
+-}
++package me.ryall.ProtectedZone;
++
++// Bukkit
++import org.bukkit.event.server.PluginEvent;
++import org.bukkit.event.server.ServerListener;
++
++public class PluginListener extends ServerListener 
++{
++    public PluginListener(ProtectedZone _pz) 
++    {
++        pz = _pz;
++    }
++    
++    public void onPluginEnabled(PluginEvent _event) 
++    {
++        pz.getPermissions().load();
++        pz.getEconomy().load();
++    }
++    
++    private ProtectedZone pz;   
++}
+diff --git a/src/me/ryall/ProtectedZone/ProtectedZone.java b/src/me/ryall/ProtectedZone/ProtectedZone.java
+index 7dbc58c..65e63a4 100644
+--- a/src/me/ryall/ProtectedZone/ProtectedZone.java
++++ b/src/me/ryall/ProtectedZone/ProtectedZone.java
+@@ -1,186 +1,186 @@
+-package me.ryall.ProtectedZone;
+-
+-// Java
+-import java.util.logging.Logger;
+-
+-// Internal
+-import me.ryall.ProtectedZone.Core.ZoneCommand;
+-import me.ryall.ProtectedZone.Core.ZoneDatabase;
+-import me.ryall.ProtectedZone.Core.ZoneEconomy;
+-import me.ryall.ProtectedZone.Core.ZoneManager;
+-import me.ryall.ProtectedZone.Core.ZonePermissions;
+-import me.ryall.ProtectedZone.Core.ZoneSettings;
+-
+-// Bukkit
+-import org.bukkit.ChatColor;
+-import org.bukkit.command.Command;
+-import org.bukkit.command.CommandSender;
+-import org.bukkit.entity.Player;
+-import org.bukkit.event.Event;
+-import org.bukkit.plugin.PluginManager;
+-import org.bukkit.plugin.java.JavaPlugin;
+-
+-public class ProtectedZone extends JavaPlugin
+-{
+-    private static String LOG_HEADER = "[Protected Zone] ";
+-    private static String CHAT_HEADER = ChatColor.YELLOW + "[Protected Zone] ";
+-    
+-    public void onDisable()
+-    {
+-        zoneDatabase.shutdown();
+-        logInfo("Flushing zones and disabling");
+-    }
+-
+-    public void onEnable()
+-    {
+-        // Initialise the core systems.
+-        log = Logger.getLogger("Minecraft");
+-        eventListener = new EventListener(this);
+-        pluginListener = new PluginListener(this);
+-        
+-        try
+-        {
+-            zoneDatabase = new ZoneDatabase(this);
+-            zoneDatabase.startup();
+-        } 
+-        catch (Exception ex) 
+-        {
+-            logError("Failed to initialise the required SQL Lite library. The plugin has been disabled");
+-            return;
+-        }
+-        
+-        zoneManager = new ZoneManager(this);
+-        zoneSettings = new ZoneSettings(this);
+-        zonePermissions = new ZonePermissions(this, getServer());
+-        zoneEconomy = new ZoneEconomy(this, getServer());
+-        zoneCommand = new ZoneCommand(this);
+-        
+-        // Bind the listener events.
+-        bindEvents();
+-        
+-        logInfo("Version 1.0.0 loaded & enabled");
+-    }
+-    
+-    protected void bindEvents()
+-    {
+-        PluginManager pm = getServer().getPluginManager();
+-        
+-        pm.registerEvent(Event.Type.BLOCK_BREAK, eventListener, Event.Priority.Highest, this);
+-        pm.registerEvent(Event.Type.BLOCK_PLACED, eventListener, Event.Priority.Highest, this);
+-        pm.registerEvent(Event.Type.SIGN_CHANGE, eventListener, Event.Priority.Normal, this);
+-        pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, eventListener, Event.Priority.Normal, this);
+-        
+-        pm.registerEvent(Event.Type.PLUGIN_ENABLE, pluginListener, Event.Priority.Monitor, this);
+-    }
+-    
+-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+-    {
+-        if (label.equalsIgnoreCase("pz"))
+-        {
+-            if (sender instanceof Player)
+-            {
+-                Player player = (Player)sender;
+-                
+-                if (args.length > 0 && !args[0].equalsIgnoreCase("help"))
+-                {
+-                    String subcommand = args[0];
+-                    String name = null;
+-                    
+-                    if (args.length > 1)
+-                        name = args[1];
+-                    
+-                    if (subcommand.equalsIgnoreCase("info"))
+-                        zoneCommand.info(player);
+-                    else if (subcommand.equalsIgnoreCase("claim"))
+-                        zoneManager.claim(player);
+-                    else if (subcommand.equalsIgnoreCase("release"))
+-                        zoneManager.release(player);
+-                    else if (subcommand.equalsIgnoreCase("add") && name != null)
+-                        zoneCommand.add(player, name);
+-                    else if (subcommand.equalsIgnoreCase("remove") && name != null)
+-                        zoneCommand.remove(player, name);
+-                    else if (subcommand.equalsIgnoreCase("owner") && name != null)
+-                        zoneCommand.owner(player, name);
+-                }
+-                else
+-                {
+-                    player.sendMessage(getChatHeader() + ChatColor.GOLD + "Commands:");
+-                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz info: " + ChatColor.WHITE + "Get information about a zone");
+-                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz claim: " + ChatColor.WHITE + "Claims a zone after it has been defined");
+-                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz release: " + ChatColor.WHITE + "Releases a zone back from the owner's control");
+-                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz add <Name>: " + ChatColor.WHITE + "Allows the named player to edit the area");
+-                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz remove <Name>: " + ChatColor.WHITE + "Prevents the named player from editing the area (default)");
+-                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz owner <Name>: " + ChatColor.WHITE + "Passes ownership of a zone to another player");
+-                }
+-            }
+-            else
+-                logInfo("Can only be accessed in game");
+-            
+-            return true;
+-        }
+-        
+-        return false;
+-    }
+-    
+-    public ZoneManager getManager()
+-    {
+-        return zoneManager;
+-    }
+-    
+-    public ZoneSettings getSettings()
+-    {
+-        return zoneSettings;
+-    }
+-    
+-    public ZonePermissions getPermissions()
+-    {
+-        return zonePermissions;
+-    }
+-    
+-    public ZoneEconomy getEconomy()
+-    {
+-        return zoneEconomy;
+-    }
+-    
+-    public ZoneDatabase getDatabase()
+-    {
+-        return zoneDatabase;
+-    }
+-    
+-    public String getChatHeader() 
+-    {
+-        return CHAT_HEADER + ChatColor.WHITE;
+-    }
+-    
+-    public String getChatWarningHeader() 
+-    {
+-        return CHAT_HEADER +  ChatColor.GOLD + "Warning: ";
+-    }
+-    
+-    public String getChatErrorHeader() 
+-    {
+-        return CHAT_HEADER +  ChatColor.RED + "Error: ";
+-    }
+-    
+-    public void logInfo(String _message)
+-    {
+-        log.info(LOG_HEADER + _message);
+-    }
+-    
+-    public void logError(String _message)
+-    {
+-        log.severe(LOG_HEADER + _message);
+-    }
+-    
+-    protected Logger log;
+-
+-    protected ZoneManager zoneManager;
+-    protected ZoneSettings zoneSettings;
+-    protected ZonePermissions zonePermissions;
+-    protected ZoneEconomy zoneEconomy;
+-    protected ZoneDatabase zoneDatabase;
+-    protected ZoneCommand zoneCommand;
+-
+-    private EventListener eventListener;
+-    private PluginListener pluginListener;
+-}
++package me.ryall.ProtectedZone;
++
++// Java
++import java.util.logging.Logger;
++
++// Internal
++import me.ryall.ProtectedZone.Core.ZoneCommand;
++import me.ryall.ProtectedZone.Core.ZoneDatabase;
++import me.ryall.ProtectedZone.Core.ZoneEconomy;
++import me.ryall.ProtectedZone.Core.ZoneManager;
++import me.ryall.ProtectedZone.Core.ZonePermissions;
++import me.ryall.ProtectedZone.Core.ZoneSettings;
++
++// Bukkit
++import org.bukkit.ChatColor;
++import org.bukkit.command.Command;
++import org.bukkit.command.CommandSender;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Event;
++import org.bukkit.plugin.PluginManager;
++import org.bukkit.plugin.java.JavaPlugin;
++
++public class ProtectedZone extends JavaPlugin
++{
++    private static String LOG_HEADER = "[Protected Zone] ";
++    private static String CHAT_HEADER = ChatColor.YELLOW + "[Protected Zone] ";
++    
++    public void onDisable()
++    {
++        zoneDatabase.shutdown();
++        logInfo("Flushing zones and disabling");
++    }
++
++    public void onEnable()
++    {
++        // Initialise the core systems.
++        log = Logger.getLogger("Minecraft");
++        eventListener = new EventListener(this);
++        pluginListener = new PluginListener(this);
++        
++        try
++        {
++            zoneDatabase = new ZoneDatabase(this);
++            zoneDatabase.startup();
++        } 
++        catch (Exception ex) 
++        {
++            logError("Failed to initialise the required SQL Lite library. The plugin has been disabled");
++            return;
++        }
++        
++        zoneManager = new ZoneManager(this);
++        zoneSettings = new ZoneSettings(this);
++        zonePermissions = new ZonePermissions(this, getServer());
++        zoneEconomy = new ZoneEconomy(this, getServer());
++        zoneCommand = new ZoneCommand(this);
++        
++        // Bind the listener events.
++        bindEvents();
++        
++        logInfo("Version 1.0.0 loaded & enabled");
++    }
++    
++    protected void bindEvents()
++    {
++        PluginManager pm = getServer().getPluginManager();
++        
++        pm.registerEvent(Event.Type.BLOCK_BREAK, eventListener, Event.Priority.Highest, this);
++        pm.registerEvent(Event.Type.BLOCK_PLACED, eventListener, Event.Priority.Highest, this);
++        pm.registerEvent(Event.Type.SIGN_CHANGE, eventListener, Event.Priority.Normal, this);
++        pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, eventListener, Event.Priority.Normal, this);
++        
++        pm.registerEvent(Event.Type.PLUGIN_ENABLE, pluginListener, Event.Priority.Monitor, this);
++    }
++    
++    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
++    {
++        if (label.equalsIgnoreCase("pz"))
++        {
++            if (sender instanceof Player)
++            {
++                Player player = (Player)sender;
++                
++                if (args.length > 0 && !args[0].equalsIgnoreCase("help"))
++                {
++                    String subcommand = args[0];
++                    String name = null;
++                    
++                    if (args.length > 1)
++                        name = args[1];
++                    
++                    if (subcommand.equalsIgnoreCase("info"))
++                        zoneCommand.info(player);
++                    else if (subcommand.equalsIgnoreCase("claim"))
++                        zoneManager.claim(player);
++                    else if (subcommand.equalsIgnoreCase("release"))
++                        zoneManager.release(player);
++                    else if (subcommand.equalsIgnoreCase("add") && name != null)
++                        zoneCommand.add(player, name);
++                    else if (subcommand.equalsIgnoreCase("remove") && name != null)
++                        zoneCommand.remove(player, name);
++                    else if (subcommand.equalsIgnoreCase("owner") && name != null)
++                        zoneCommand.owner(player, name);
++                }
++                else
++                {
++                    player.sendMessage(getChatHeader() + ChatColor.GOLD + "Commands:");
++                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz info: " + ChatColor.WHITE + "Get information about a zone");
++                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz claim: " + ChatColor.WHITE + "Claims a zone after it has been defined");
++                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz release: " + ChatColor.WHITE + "Releases a zone back from the owner's control");
++                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz add <Name>: " + ChatColor.WHITE + "Allows the named player to edit the area");
++                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz remove <Name>: " + ChatColor.WHITE + "Prevents the named player from editing the area (default)");
++                    player.sendMessage(getChatHeader() + ChatColor.AQUA + "/pz owner <Name>: " + ChatColor.WHITE + "Passes ownership of a zone to another player");
++                }
++            }
++            else
++                logInfo("Can only be accessed in game");
++            
++            return true;
++        }
++        
++        return false;
++    }
++    
++    public ZoneManager getManager()
++    {
++        return zoneManager;
++    }
++    
++    public ZoneSettings getSettings()
++    {
++        return zoneSettings;
++    }
++    
++    public ZonePermissions getPermissions()
++    {
++        return zonePermissions;
++    }
++    
++    public ZoneEconomy getEconomy()
++    {
++        return zoneEconomy;
++    }
++    
++    public ZoneDatabase getDatabase()
++    {
++        return zoneDatabase;
++    }
++    
++    public String getChatHeader() 
++    {
++        return CHAT_HEADER + ChatColor.WHITE;
++    }
++    
++    public String getChatWarningHeader() 
++    {
++        return CHAT_HEADER +  ChatColor.GOLD + "Warning: ";
++    }
++    
++    public String getChatErrorHeader() 
++    {
++        return CHAT_HEADER +  ChatColor.RED + "Error: ";
++    }
++    
++    public void logInfo(String _message)
++    {
++        log.info(LOG_HEADER + _message);
++    }
++    
++    public void logError(String _message)
++    {
++        log.severe(LOG_HEADER + _message);
++    }
++    
++    protected Logger log;
++
++    protected ZoneManager zoneManager;
++    protected ZoneSettings zoneSettings;
++    protected ZonePermissions zonePermissions;
++    protected ZoneEconomy zoneEconomy;
++    protected ZoneDatabase zoneDatabase;
++    protected ZoneCommand zoneCommand;
++
++    private EventListener eventListener;
++    private PluginListener pluginListener;
++}

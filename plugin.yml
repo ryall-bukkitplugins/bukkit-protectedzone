@@ -1,8 +1,8 @@
 name: Protected Zone
 main: me.ryall.ProtectedZone.ProtectedZone
-version: 1
-description: Flexible and Powerful Zone Protection
+version: 1.0.0
+description: Flexible Zone Protection
 commands:
-  PZ:
-    description: Controls the Protection Zone plugin
-    usage: /pz (info|claim|release|add <user>|remove <user>|owner <user>)
+    PZ:
+        description: Controls the Protection Zone plugin
+        usage: /pz (info|claim|release|add <user>|remove <user>|owner <user>)

@@ -49,21 +49,21 @@ public class Zone
         }
     }
     
-	public Zone(ProtectedZone _pz, int _x, int _y, int _z, int _width, int _height, int _depth, double _price)
-	{
-	    pz         = _pz;
-	    
-	    x          = _x;
-	    y          = _y;
-	    z          = _z;
-	    width      = _width;
-	    height     = _height;
-	    depth      = _depth;
-	    price      = _price;
-	    
-	    members    = new ArrayList<String>();
-	}
-	
+    public Zone(ProtectedZone _pz, int _x, int _y, int _z, int _width, int _height, int _depth, double _price)
+    {
+        pz         = _pz;
+        
+        x          = _x;
+        y          = _y;
+        z          = _z;
+        width      = _width;
+        height     = _height;
+        depth      = _depth;
+        price      = _price;
+        
+        members    = new ArrayList<String>();
+    }
+    
     public void updateSign(World _world)
     {
         Block signBlock = _world.getBlockAt(x, y, z);
@@ -90,7 +90,7 @@ public class Zone
         
         sign.update();
     }
-	
+    
     public boolean hasId()
     {
         return id != 0;
@@ -107,30 +107,30 @@ public class Zone
     }
 
     public void setOwner(String _name)
-	{
-	    owner = _name;
-	}
-	
+    {
+        owner = _name;
+    }
+    
     public String getOwner()
     {
         return owner;
     }
-	
-	public boolean hasOwner()
-	{
-	    return owner != null;
-	}
-	   
-	public boolean isOwner(Player _player)
-	{
-		return _player.getName().equalsIgnoreCase(owner);
-	}
-	
-	public boolean canBuild(Player _player)
-	{
-		return isOwner(_player) || members.contains(_player.getName());
-	}
-	
+    
+    public boolean hasOwner()
+    {
+        return owner != null;
+    }
+       
+    public boolean isOwner(Player _player)
+    {
+        return _player.getName().equalsIgnoreCase(owner);
+    }
+    
+    public boolean canBuild(Player _player)
+    {
+        return isOwner(_player) || members.contains(_player.getName());
+    }
+    
     public double getPrice()
     {
         return price;
@@ -140,7 +140,7 @@ public class Zone
     {
         return price == 0;
     }
-	
+    
     public boolean isNoticeEnabled()
     {
         return true;
@@ -210,68 +210,68 @@ public class Zone
     {
         return z;
     }
-	
-	public int getWidth()
-	{
-		return width;
-	}
-	
-	public int getHeight()
-	{
-		return height;
-	}
-	
-	public int getDepth()
-	{
-		return depth;
-	}
-	
+    
+    public int getWidth()
+    {
+        return width;
+    }
+    
+    public int getHeight()
+    {
+        return height;
+    }
+    
+    public int getDepth()
+    {
+        return depth;
+    }
+    
     // X: -North +South
     // Y: -Down  +Up
     // Z: -East  +West
-	public int getNorth()
-	{
-	    return x - ((width - 1) / 2);
-	}
-	
-	public int getSouth()
+    public int getNorth()
+    {
+        return x - ((width - 1) / 2);
+    }
+    
+    public int getSouth()
     {
         return x + ((width - 1) / 2);
     }
-	
-	public int getEast()
+    
+    public int getEast()
     {
         return z - ((depth - 1) / 2);
     }
-	
-	public int getWest()
+    
+    public int getWest()
     {
         return z + ((depth - 1) / 2);
     }
-	
-	public int getUp()
+    
+    public int getUp()
     {
         return y + ((height - 1) / 2);
     }
-	
-	public int getDown()
+    
+    public int getDown()
     {
         return y - ((height - 1) / 2);
     }
-	
-	public int getArea()
-	{
-		return width * height * depth;
-	}
-	
-	private ProtectedZone pz;
+    
+    public int getArea()
+    {
+        return width * height * depth;
+    }
+    
+    private ProtectedZone pz;
 
-	private int id;
-	private String owner;
-	private int x;
+    private int id;
+    private String owner;
+    private int x;
     private int y;
     private int z;
-	private int width;
+    private int width;
     private int height;
     private int depth;
     private double price;

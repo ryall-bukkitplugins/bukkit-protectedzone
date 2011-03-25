@@ -5,7 +5,7 @@ import me.ryall.ProtectedZone.ProtectedZone;
 
 public class ZoneSettings 
 {
-	public ZoneSettings(ProtectedZone _pz)
+    public ZoneSettings(ProtectedZone _pz)
     {
     }
 
@@ -13,21 +13,21 @@ public class ZoneSettings
     {
         return false;
     }
-	
+    
     public int getMaxX() 
-	{
-		return 99;
-	}
-	
-	public int getMaxY() 
-	{
-		return 99;
-	}
-	
-	public int getMaxZ() 
-	{
-		return 99;
-	}
+    {
+        return 99;
+    }
+    
+    public int getMaxY() 
+    {
+        return 99;
+    }
+    
+    public int getMaxZ() 
+    {
+        return 99;
+    }
 
     public int getMaxPrice()
     {

@@ -16,13 +16,13 @@ import org.bukkit.event.block.SignChangeEvent;
 
 public class ZoneManager 
 {
-	public ZoneManager(ProtectedZone _pz)
-	{
-	    pz = _pz;
-	    zones = pz.getDatabase().loadZones();
-	    selectedZones = new HashMap<String, Zone>();
-	}
-	
+    public ZoneManager(ProtectedZone _pz)
+    {
+        pz = _pz;
+        zones = pz.getDatabase().loadZones();
+        selectedZones = new HashMap<String, Zone>();
+    }
+    
     public void define(Player _player, SignChangeEvent _event)
     {
         // Define the area if we can.
@@ -276,7 +276,7 @@ public class ZoneManager
         _player.sendMessage(pz.getChatErrorHeader() + _message);
         _event.setLine(0, Zone.SIGN_INVALID);
     }
-	
+    
     private Zone getZoneAt(int _x, int _y, int _z)
     {
         for (Zone zone : zones)
@@ -298,8 +298,8 @@ public class ZoneManager
         
         return null;
     }
-	
-	private ProtectedZone pz;
-	private ArrayList<Zone> zones;
-	private HashMap<String, Zone> selectedZones;
+    
+    private ProtectedZone pz;
+    private ArrayList<Zone> zones;
+    private HashMap<String, Zone> selectedZones;
 }
